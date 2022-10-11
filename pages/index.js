@@ -1,12 +1,16 @@
 import Head from 'next/head'
 
+import ArtifactContainer from '../components/ArtifactContainer';
+import Placeholder from '../components/Placeholder';
+
 export default function Home() {
   return (
 	<>
 	  <Head>
 	    <title>Under Construction...</title>
 	  </Head>
-	  <p>This is a placeholder page. Features coming soon...</p>
+	  <ArtifactContainer />
+	  <Placeholder />
 	</>
   );
 };
