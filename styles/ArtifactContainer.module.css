@@ -1,0 +1,28 @@
+.artifact-module {
+	flex: 1;
+
+	border: 1px solid white;
+	min-width: 400px;
+}
+
+.controls {
+  border-bottom: 1px solid white;
+  padding: 8px;
+
+  display: flex; 
+  flex-direction: row;
+  gap: 10px;
+}
+
+ul.artifact-container {
+  padding: 10px;
+
+  list-style: none;
+}
+
+.artifact {
+  border: 1px solid white;
+  border-radius: 8px 15px;
+
+  padding-bottom: 10px;
+}

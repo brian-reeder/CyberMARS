@@ -1,0 +1,25 @@
+.eventlog {
+  border: 1px solid green;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  padding: 5px;
+}
+
+.controls {
+  display: flex; 
+  flex-direction: row;
+  gap: 10px;
+}
+
+.log,
+.json {
+  overflow-y: scroll;
+  min-height: 75px;
+  resize: none;
+}
+
+.hidden {
+  display: none;
+}
