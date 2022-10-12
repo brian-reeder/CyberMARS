@@ -5,48 +5,13 @@ import Eventlog from '../components/Artifact/Eventlog';
 import styles from '../styles/Artifact.module.css';
 
 
-export default function Artifact( props ) {
-	const [evidenceItems, setEvidenceItems] = useState([]);
-
-	function handleClick() {
-		const val = event.target.value;
-
-		setEvidenceItems([
-			...evidenceItems,
-			{
-				'id': Date.now() + '' + Math.random(),
-				'type': val,
-				'value': '',
-				'fields': {'test': 'val'}
-			}
-		]);
-	};
-
-	const handleChangeChild = useCallback( (index, txt) => {
-		let events = evidenceItems;
-		events[index] = {
-			...events[index],
-			'value': txt,
-			'fields': {
-				'test': txt
-			}
-		};
-
-		setEvidenceItems([...events]);
-	}, [evidenceItems] );
-
-	const handleRemoveChild = useCallback( (index) => {
-		let events = evidenceItems;
-		events.splice(index, 1);
-		setEvidenceItems([...events]);
-	}, [evidenceItems] );
-
+export default function Artifact( { evidenceItems, ...props } ) {
 	return (
 		<article className={ styles['artifact'] }>
 		  <div className={ styles['controls'] }>
 		    <h4>Artifact</h4>
 		    <button
-		      onClick={ handleClick }
+		      onClick={ props.handleAddEvidence }
 		      value="eventlog"
 		    >Add Event Log</button>
 		    <button
@@ -54,19 +19,17 @@ export default function Artifact( props ) {
 		    >Remove</button>
 		  </div>
 		  <ul className={ styles['evidence-container'] }>
-		  {evidenceItems.map((e, i) => {
+		  { evidenceItems.map((e, i) => {
 			const nProps = {
 				...e,
-				'handleChange': () => handleChangeChild(i, event.target.value),
-				'handleRemove': () => handleRemoveChild(i)
+				'handleChange': () => props.handleUpdateEvidence(i),
+				'handleRemove': () => props.handleRemoveEvidence(i)
 			}
 
 			let element;
 			switch(e['type']) {
 				case 'eventlog':
-					element = (<Eventlog
-					  {...nProps}
-					/>);
+					element = <Eventlog {...nProps} />;
 				break;
 			}
 
