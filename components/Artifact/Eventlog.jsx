@@ -3,11 +3,7 @@ import styles from '../../styles/Artifact/Eventlog.module.css';
 
 
 export default function Eventlog( props ) {
-	const [fields, setFields] = useState({'test':'value'});
 	const [isHidden, setIsHidden] = useState(true);
-
-	function handleClick() {
-	};
 
 	function toggleHide() {
 		setIsHidden(!isHidden);
@@ -17,20 +13,15 @@ export default function Eventlog( props ) {
 		<div className={ styles.eventlog }>
 		  <div className={ styles['controls']}>
 		    <h4>Event Log</h4>
-		    <button
-		      onClick={ toggleHide }
-		    >Show Fields</button>
-		    <button
-		      onClick={ props.handleRemove }
-		    >Remove</button>
+		    <button onClick={ toggleHide }>Show Fields</button>
+		    <button onClick={ props.handleRemove }>Remove</button>
 		  </div>
 
 		  <textarea
 		    className={ styles.log }
-		    //value={ props.value }
 		    onChange={ props.handleChange }
 		    readOnly={ false }
-		  >{ props.children }</textarea>
+		  ></textarea>
 
 		  <textarea
 		    className={ `${styles.json} ${isHidden ? styles.hidden : ''}` }

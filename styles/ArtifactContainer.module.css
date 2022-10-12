@@ -1,12 +1,14 @@
 .artifact-module {
 	flex: 1;
 
-	border: 1px solid white;
+	background-color: var(--bg-secondary);
+	border-radius: 8px;
 	min-width: 400px;
 }
 
 .controls {
-  border-bottom: 1px solid white;
+  background-color: var(--bg-bot);
+  border-radius: 8px 8px 0 0;
   padding: 8px;
 
   display: flex; 

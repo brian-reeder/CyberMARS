@@ -6,15 +6,25 @@
   padding: 0;
 }
 
+
 html {
-  background-color: #282a36;
-  color: #f8f8f2;
+  --bg-primary: #121212;
+  --bg-secondary: #181818;
+  --bg-top: #404040;
+  --bg-bot: #282828;
+  --txt-primary: #F2F2F8;
+  --txt-secondary: #B3B3B3;
+
+  background-color: var(--bg-primary);
+  color: var(--txt-primary);
 }
 
 footer {
   padding: 5px;
   font-style: italic;
   min-height: 20px;
+
+  color: var(--txt-secondary);
 
   display: flex;
   flex-direction: row;
