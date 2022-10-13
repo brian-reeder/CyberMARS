@@ -4,6 +4,7 @@
 	background-color: var(--bg-secondary);
 	border-radius: 8px;
 	min-width: 400px;
+	max-width: 650px;
 }
 
 .controls {
