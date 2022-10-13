@@ -1,65 +1,113 @@
-import Head from 'next/head'
-import { useState, useCallback } from 'react';
+import Head from 'next/head';
+
+import { useRouter } from 'next/router';
+import { useState, useCallback, useEffect } from 'react';
+
+import { encode, decode } from '../lib/b64url.js';
 
 import ArtifactContainer from '../components/ArtifactContainer';
 import Placeholder from '../components/Placeholder';
 
 export default function Home() {
 	const [artifacts, setArtifacts] = useState([]);
+	const router  = useRouter();
 
-	const handleAddArtifact = useCallback( () => {
+	useEffect( ()=> {
+		if(!router.isReady) return;
+
+		const handleHashChange = () => {
+			const hash = getHash();
+			const newArtifacts = hash !== undefined ? hash.artifacts : [];
+			setArtifacts([...newArtifacts]);
+		};
+
+		window.addEventListener('hashchange', handleHashChange);
+		window.addEventListener('load', handleHashChange);
+		router.events.on('hashChangeComplete', handleHashChange);
+		handleHashChange();
+	}, [router.isReady]);
+
+	function getHash() {
+		const path = window.location.hash.split('/');
+		const appState = path.length > 1 ? decode(path[1]) : {
+			'artifacts': []
+		};
+		return appState;
+	}
+
+	function updateHash(newArtifacts) {
+		router.push({
+			'pathname': '/',
+			'hash': `template/${encode(newArtifacts)}`
+		});
+	};
+
+	const handleAddArtifact =  () => {
                 const val = event.target.value;
-		setArtifacts([...artifacts,{
+		const newArtifacts = [...artifacts, {
 			'id': `Artifact_${Date.now()}${Math.random()}`,
                         'evidenceItems': []
-                }]);
-        }, [artifacts]);
+                }];
+		
+		updateHash({
+			'artifacts': newArtifacts
+		});
+        };
 
-	const handleRemoveArtifact = useCallback( (index) => {
-		let arry = artifacts;
-		arry.splice(index, 1);
-		setArtifacts([...arry]);
-	}, [artifacts]);
+	const handleRemoveArtifact = (index) => {
+		let newArtifacts = artifacts;
+		newArtifacts.splice(index, 1);
+		
+		updateHash({
+			'artifacts': newArtifacts
+		});
+	};
 
-	const handleAddEvidence = useCallback( (index) => {
-                let arry = artifacts;
-                let evItems = arry[index].evidenceItems;
-                arry[index].evidenceItems = [
+	const handleAddEvidence = (index) => {
+                let newArtifacts = artifacts;
+                let evItems = newArtifacts[index].evidenceItems;
+                newArtifacts[index].evidenceItems = [
                         ...evItems,
                         {
                                 'id': `Evidence_${Date.now()}${Math.random()}`,
                                 'type': event.target.value,
-                                'value': '',
                                 'fields': {}
                         }
                 ];
-                setArtifacts([...arry]);
-        }, [artifacts]);
 
-	const handleUpdateEvidence = useCallback( (index, evIndex) => {
-                let arry = artifacts;
-                let evidence = arry[index].evidenceItems[evIndex];
+		updateHash({
+			'artifacts': newArtifacts
+		});
+        };
+
+	const handleUpdateEvidence = (index, evIndex) => {
+                let newArtifacts = artifacts;
+                let evidence = newArtifacts[index].evidenceItems[evIndex];
                 switch(evidence.type) {
                         case 'eventlog':
-				console.log(event.target.tagName);
                                 evidence.fields = event.target.value ? {
                                         'key': event.target.value
                                 } : {};
                         break;
                 };
 
-                arry[index].evidenceItems.splice(evIndex, 1, evidence);
-                setArtifacts([...arry]);
-        }, [artifacts] );
+                newArtifacts[index].evidenceItems.splice(evIndex, 1, evidence);
+		
+		updateHash({
+			'artifacts': newArtifacts
+		});
+        };
 
-	const handleRemoveEvidence = useCallback( (index, evIndex) => {
-                let arry = artifacts;
-                let evItems = arry[index].evidenceItems
+	const handleRemoveEvidence = (index, evIndex) => {
+                let newArtifacts = artifacts;
+                let evItems = newArtifacts[index].evidenceItems
                 evItems.splice(evIndex, 1);
-                arry[index].evidenceItems = [...evItems];
+                newArtifacts[index].evidenceItems = [...evItems];
 
-                setArtifacts([...arry]);
-        }, [artifacts] );
+		updateHash({
+			'artifacts': newArtifacts
+		});
+        };
 
 
   return (
