@@ -35,17 +35,46 @@ export default function Home() {
 		return appState;
 	}
 
-	function updateHash(newArtifacts) {
+	function updateHash(newState) {
+		let cleanState = {
+			'artifacts': newState.artifacts.map( (e) => {
+				return {
+					...e,
+					evidenceItems: e.evidenceItems.map( (evItem) => {
+						let n = {...evItem};
+						delete n.fields;
+
+						return n;
+					} )
+				};
+			} )
+		};
+
 		router.push({
 			'pathname': '/',
-			'hash': `template/${encode(newArtifacts)}`
+			'hash': `template/${encode(cleanState)}`
 		});
+	};
+
+	const genArtifactID = () => {
+		const IDs = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
+		const usedIDs = artifacts.map( (e) => e.id);
+		
+		for(var c of IDs) {
+			if(!usedIDs.includes(c)) return c;
+		}
+
+		return undefined;
 	};
 
 	const handleAddArtifact =  () => {
                 const val = event.target.value;
+		const id = genArtifactID();
+		
+		if(id === undefined) return;
+
 		const newArtifacts = [...artifacts, {
-			'id': `Artifact_${Date.now()}${Math.random()}`,
+			'id': id,
                         'evidenceItems': []
                 }];
 		
@@ -63,13 +92,35 @@ export default function Home() {
 		});
 	};
 
+	const genEvidenceID = (index) => {
+		const artifact = artifacts[index];
+
+		if(artifact.evidenceItems.length >= 99) return undefined;
+
+		const IDs = artifact.evidenceItems.map( e => parseInt(e.id) );
+		IDs.sort();
+		let count = 1;
+		for(var ID of IDs) {
+			if(count !== ID) {
+				break;
+			}
+
+			count += 1;
+		}
+
+		return `${count}`.padStart(2, '0');
+	};
+
 	const handleAddEvidence = (index) => {
                 let newArtifacts = artifacts;
                 let evItems = newArtifacts[index].evidenceItems;
+		const id = genEvidenceID(index);
+		if(id === undefined) return;
+
                 newArtifacts[index].evidenceItems = [
                         ...evItems,
                         {
-                                'id': `Evidence_${Date.now()}${Math.random()}`,
+                                'id': id, 
                                 'type': event.target.value,
                                 'fields': {}
                         }
@@ -86,7 +137,7 @@ export default function Home() {
                 switch(evidence.type) {
                         case 'eventlog':
                                 evidence.fields = event.target.value ? {
-                                        'key': event.target.value
+                                        'key2': event.target.value
                                 } : {};
                         break;
                 };
@@ -117,6 +168,7 @@ export default function Home() {
 	  </Head>
 	  <ArtifactContainer 
 	    artifacts={ artifacts }
+
 	    handleAddArtifact={ handleAddArtifact }
 	    handleRemoveArtifact={ handleRemoveArtifact }
 	    handleAddEvidence={ handleAddEvidence }

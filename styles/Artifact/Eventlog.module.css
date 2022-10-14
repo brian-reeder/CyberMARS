@@ -1,5 +1,6 @@
 .eventlog {
-  border: 1px solid green;
+  border: 1px solid var(--txt-secondary);
+  border-radius: 4px;
   display: flex;
   flex-direction: column;
   gap: 10px;

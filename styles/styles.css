@@ -12,7 +12,7 @@ html {
   --bg-secondary: #181818;
   --bg-top: #404040;
   --bg-bot: #282828;
-  --txt-primary: #F2F2F8;
+  --txt-primary: #F8F8F2;
   --txt-secondary: #B3B3B3;
 
   background-color: var(--bg-primary);
@@ -88,4 +88,17 @@ footer > a:hover {
 
 .dr-red {
   color: #ff5555;
+}
+
+textarea {
+  border-color: var(--bg-primary);
+  border-radius: 4px;
+  padding: 5px;
+  background-color: var(--bg-secondary);
+  color: var(--text-secondary);
+}
+
+textarea:focus-visible {
+  border-color: #8be9fd;
+  outline: #8be9fd;
 }
