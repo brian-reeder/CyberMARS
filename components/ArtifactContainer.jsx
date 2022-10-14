@@ -15,9 +15,11 @@ export default function ArtifactContainer({ artifacts, ...props }) {
 		    </div>
 		    <ul className={ styles['artifact-container'] }>
 		      { artifacts.map( (item,index) =>
-		        <li key={item.id}>
+		        <li key={ item.id }>
 			    <Artifact 
+			      id={ item.id }
 			      evidenceItems={ item.evidenceItems }
+
 			      handleRemove={ () => props.handleRemoveArtifact(index) }
 			      handleAddEvidence={ () => props.handleAddEvidence(index) }
 			      handleRemoveEvidence={ (evIndex) => props.handleRemoveEvidence(index, evIndex) }

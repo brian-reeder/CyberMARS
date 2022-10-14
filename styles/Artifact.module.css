@@ -6,7 +6,8 @@
 }
 
 .controls {
-  border-bottom: 1px solid white;
+  background-color: var(--bg-bot);
+  border-radius: 4px 20px 0 0; 
   padding: 8px;
 
   display: flex; 
@@ -17,15 +18,16 @@
 ul.evidence-container {
   padding: 10px;
   list-style: none;
+  border-radius: 0 0 4px 20px;
+  background-color:#282a36;
+  color: var(--txt-secondary);
 
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 25px;
 }
 
 .artifact {
-  border: 1px solid white;
-  border-radius: 8px 15px;
-
-  padding-bottom: 10px;
+  border-radius: 4px 20px;
+  box-shadow: 1px 1px 10px 1px black;
 }

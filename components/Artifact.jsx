@@ -9,7 +9,7 @@ export default function Artifact( { evidenceItems, ...props } ) {
 	return (
 		<article className={ styles['artifact'] }>
 		  <div className={ styles['controls'] }>
-		    <h4>Artifact</h4>
+		    <h4>Artifact ({ props.id })</h4>
 		    <button
 		      onClick={ props.handleAddEvidence }
 		      value="eventlog"

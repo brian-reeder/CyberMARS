@@ -12,7 +12,7 @@ export default function Eventlog( props ) {
 	return (
 		<div className={ styles.eventlog }>
 		  <div className={ styles['controls']}>
-		    <h4>Event Log</h4>
+		    <h4>Event Log ({ props.id })</h4>
 		    <button onClick={ toggleHide }>Show Fields</button>
 		    <button onClick={ props.handleRemove }>Remove</button>
 		  </div>
