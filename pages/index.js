@@ -98,9 +98,11 @@ export default function Home() {
 		if(artifact.evidenceItems.length >= 99) return undefined;
 
 		const IDs = artifact.evidenceItems.map( e => parseInt(e.id) );
-		IDs.sort();
+		let sortableArry = new Int8Array(IDs);
+		sortableArry.sort();
+		console.log(sortableArry)
 		let count = 1;
-		for(var ID of IDs) {
+		for(var ID of sortableArry) {
 			if(count !== ID) {
 				break;
 			}
