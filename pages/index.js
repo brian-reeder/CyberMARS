@@ -4,6 +4,7 @@ import { useRouter } from 'next/router';
 import { useState, useCallback, useEffect } from 'react';
 
 import { encode, decode } from '../lib/b64url.js';
+import parseEventLog from '../lib/parsers.js';
 
 import ArtifactContainer from '../components/ArtifactContainer';
 import Placeholder from '../components/Placeholder';
@@ -56,6 +57,23 @@ export default function Home() {
 		});
 	};
 
+	function updateFields(index, evIndex) {
+                let newArtifacts = artifacts;
+                let evidence = newArtifacts[index].evidenceItems[evIndex];
+                switch(evidence.type) {
+                        case 'eventlog':
+				evidence.value = event.target.value;
+                                evidence.fields = parseEventLog(evidence.parser, evidence.value); 
+                        break;
+                };
+
+                newArtifacts[index].evidenceItems.splice(evIndex, 1, evidence);
+		
+		updateHash({
+			'artifacts': newArtifacts
+		});
+        };
+
 	const genArtifactID = () => {
 		const IDs = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
 		const usedIDs = artifacts.map( (e) => e.id);
@@ -98,9 +116,11 @@ export default function Home() {
 		if(artifact.evidenceItems.length >= 99) return undefined;
 
 		const IDs = artifact.evidenceItems.map( e => parseInt(e.id) );
-		IDs.sort();
+		let sortableArry = new Int8Array(IDs);
+		sortableArry.sort();
+		console.log(sortableArry)
 		let count = 1;
-		for(var ID of IDs) {
+		for(var ID of sortableArry) {
 			if(count !== ID) {
 				break;
 			}
@@ -122,6 +142,8 @@ export default function Home() {
                         {
                                 'id': id, 
                                 'type': event.target.value,
+				'parser': 0,
+				'value': '',
                                 'fields': {}
                         }
                 ];
@@ -136,9 +158,8 @@ export default function Home() {
                 let evidence = newArtifacts[index].evidenceItems[evIndex];
                 switch(evidence.type) {
                         case 'eventlog':
-                                evidence.fields = event.target.value ? {
-                                        'key2': event.target.value
-                                } : {};
+				evidence.value = event.target.value;
+                                evidence.fields = parseEventLog(evidence.parser, evidence.value); 
                         break;
                 };
 
@@ -160,6 +181,20 @@ export default function Home() {
 		});
         };
 
+	const handleParserChange = (index, evIndex) => {
+		let newArtifacts = artifacts;
+		let evidence = newArtifacts[index].evidenceItems[evIndex];
+		
+		evidence.parser = event.target.value;
+		evidence.fields = parseEventLog(evidence.parser, evidence.value); 
+
+		newArtifacts[index].evidenceItems[evIndex] = evidence;
+
+		updateHash({
+			'artifacts': newArtifacts
+		});
+	};
+
 
   return (
 	<>
@@ -174,6 +209,7 @@ export default function Home() {
 	    handleAddEvidence={ handleAddEvidence }
 	    handleUpdateEvidence={ handleUpdateEvidence }
 	    handleRemoveEvidence={ handleRemoveEvidence }
+	    handleParserChange={ handleParserChange}
 	  />
 	  <Placeholder />
 	</>

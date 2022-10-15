@@ -19,6 +19,8 @@
   overflow-y: scroll;
   min-height: 75px;
   resize: none;
+
+  height: 175px;
 }
 
 .hidden {
