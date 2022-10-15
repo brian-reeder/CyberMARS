@@ -23,7 +23,8 @@ export default function Artifact( { evidenceItems, ...props } ) {
 			const nProps = {
 				...e,
 				'handleChange': () => props.handleUpdateEvidence(i),
-				'handleRemove': () => props.handleRemoveEvidence(i)
+				'handleRemove': () => props.handleRemoveEvidence(i),
+				'handleParserChange': () => props.handleParserChange(i)
 			}
 
 			let element;

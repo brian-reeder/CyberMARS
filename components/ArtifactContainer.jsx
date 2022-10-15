@@ -24,6 +24,7 @@ export default function ArtifactContainer({ artifacts, ...props }) {
 			      handleAddEvidence={ () => props.handleAddEvidence(index) }
 			      handleRemoveEvidence={ (evIndex) => props.handleRemoveEvidence(index, evIndex) }
 			      handleUpdateEvidence={ (evIndex) => props.handleUpdateEvidence(index, evIndex)}
+			      handleParserChange = { (evIndex) => props.handleParserChange(index, evIndex)}
 
 			    />
 			</li>
