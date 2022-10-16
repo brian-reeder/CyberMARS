@@ -7,8 +7,8 @@ import styles from '../styles/Artifact.module.css';
 
 export default function Artifact( { evidenceItems, ...props } ) {
 	return (
-		<article className={ styles['artifact'] }>
-		  <div className={ styles['controls'] }>
+		<article className={ styles.artifact }>
+		  <div className={ styles.controls }>
 		    <h4>Artifact ({ props.id })</h4>
 		    <button
 		      onClick={ props.handleAddEvidence }
@@ -18,7 +18,7 @@ export default function Artifact( { evidenceItems, ...props } ) {
 		      onClick={ props.handleRemove }
 		    >Remove</button>
 		  </div>
-		  <ul className={ styles['evidence-container'] }>
+		  <ul className={ styles.evidenceContainer }>
 		  { evidenceItems.map((e, i) => {
 			const nProps = {
 				...e,
@@ -27,7 +27,7 @@ export default function Artifact( { evidenceItems, ...props } ) {
 			}
 
 			let element;
-			switch(e['type']) {
+			switch(e.type) {
 				case 'eventlog':
 					element = <Eventlog { ...nProps }
 						handleParserChange={ () => props.handleParserChange(i) }
@@ -36,7 +36,7 @@ export default function Artifact( { evidenceItems, ...props } ) {
 			}
 
 			return (
-				<li key={e['id']}>
+				<li key={e.id}>
 				  { element }
 				</li>
 			);
