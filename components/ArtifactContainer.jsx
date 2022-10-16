@@ -12,6 +12,10 @@ export default function ArtifactContainer({ artifacts, ...props }) {
 		        onClick={ props.handleAddArtifact }
 		        value="addArtifact"
 		      >Add Artifact</button>
+		      <button
+		        onClick={ props.handleClearArtifacts }
+	                value="clearArtifacts"
+	              >Clear Artifacts</button>
 		    </div>
 		    <ul className={ styles['artifact-container'] }>
 		      { artifacts.map( (item,index) =>

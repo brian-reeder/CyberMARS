@@ -101,6 +101,12 @@ export default function Home() {
 		});
         };
 
+	const handleClearArtifacts = () => {
+		updateHash({
+			'artifacts': []
+		});
+	};
+
 	const handleRemoveArtifact = (index) => {
 		let newArtifacts = artifacts;
 		newArtifacts.splice(index, 1);
@@ -205,6 +211,7 @@ export default function Home() {
 	    artifacts={ artifacts }
 
 	    handleAddArtifact={ handleAddArtifact }
+	    handleClearArtifacts={ handleClearArtifacts }
 	    handleRemoveArtifact={ handleRemoveArtifact }
 	    handleAddEvidence={ handleAddEvidence }
 	    handleUpdateEvidence={ handleUpdateEvidence }

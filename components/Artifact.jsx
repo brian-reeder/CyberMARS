@@ -24,13 +24,14 @@ export default function Artifact( { evidenceItems, ...props } ) {
 				...e,
 				'handleChange': () => props.handleUpdateEvidence(i),
 				'handleRemove': () => props.handleRemoveEvidence(i),
-				'handleParserChange': () => props.handleParserChange(i)
 			}
 
 			let element;
 			switch(e['type']) {
 				case 'eventlog':
-					element = <Eventlog {...nProps} />;
+					element = <Eventlog { ...nProps }
+						handleParserChange={ () => props.handleParserChange(i) }
+					/>;
 				break;
 			}
 
