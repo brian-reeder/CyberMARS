@@ -5,8 +5,8 @@ import styles from '../styles/ArtifactContainer.module.css';
 export default function ArtifactContainer({ artifacts, ...props }) {
 	return (
 		<>
-		  <section className={ styles['artifact-module'] }>
-		    <div className={ styles['controls'] }>
+		  <section className={ styles.artifactModule }>
+		    <div className={ styles.controls }>
 		      <h4>Controls</h4>
 		      <button
 		        onClick={ props.handleAddArtifact }
@@ -17,7 +17,7 @@ export default function ArtifactContainer({ artifacts, ...props }) {
 	                value="clearArtifacts"
 	              >Clear Artifacts</button>
 		    </div>
-		    <ul className={ styles['artifact-container'] }>
+		    <ul className={ styles.artifactContainer }>
 		      { artifacts.map( (item,index) =>
 		        <li key={ item.id }>
 			    <Artifact 

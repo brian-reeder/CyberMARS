@@ -1,4 +1,4 @@
-.artifact-module {
+.artifactModule {
 	flex: 1;
 
 	background-color: var(--bg-secondary);
@@ -17,7 +17,7 @@
   gap: 10px;
 }
 
-ul.artifact-container {
+ul.artifactContainer {
   padding: 10px;
 
   list-style: none;
