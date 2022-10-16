@@ -15,6 +15,7 @@ html {
   --txt-primary: #F8F8F2;
   --txt-secondary: #B3B3B3;
 
+  --dracula-purple: #BD93F9;
   --dracula-red: #FF5555;
 
   background-color: var(--bg-primary);
@@ -72,7 +73,7 @@ footer > a:visited {
 
 a:hover,
 footer > a:hover {
-  color: #ffb86c;
+  color: var(--dracula-red);
 }
 
 .acronym {
@@ -103,4 +104,12 @@ textarea {
 textarea:focus-visible {
   border-color: var(--dracula-red);
   outline: var(--dracula-red);
+}
+
+select {
+  padding: 2px;
+  background-color: var(--bg-secondary);
+  border-color: var(--bg-primary);
+
+  color: var(--dracula-purple);
 }
