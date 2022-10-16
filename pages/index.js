@@ -44,6 +44,7 @@ export default function Home() {
 					evidenceItems: e.evidenceItems.map( (evItem) => {
 						let n = {...evItem};
 						delete n.fields;
+						delete n.value;
 
 						return n;
 					} )
