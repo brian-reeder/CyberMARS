@@ -15,6 +15,8 @@ html {
   --txt-primary: #F8F8F2;
   --txt-secondary: #B3B3B3;
 
+  --dracula-red: #FF5555;
+
   background-color: var(--bg-primary);
   color: var(--txt-primary);
 }
@@ -99,6 +101,6 @@ textarea {
 }
 
 textarea:focus-visible {
-  border-color: #8be9fd;
-  outline: #8be9fd;
+  border-color: var(--dracula-red);
+  outline: var(--dracula-red);
 }
