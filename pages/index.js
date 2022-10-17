@@ -193,7 +193,8 @@ export default function Home() {
 		let evidence = newArtifacts[index].evidenceItems[evIndex];
 		
 		evidence.parser = event.target.value;
-		evidence.fields = parseEventLog(evidence.parser, evidence.value); 
+		const eventLogValue = event.target.parentNode.children[2].value;
+		evidence.fields = parseEventLog(evidence.parser, eventLogValue); 
 
 		newArtifacts[index].evidenceItems[evIndex] = evidence;
 
