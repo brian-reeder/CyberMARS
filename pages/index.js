@@ -11,6 +11,7 @@ import ReportContainer from '../components/ReportContainer';
 
 export default function Home() {
 	const [artifacts, setArtifacts] = useState([]);
+	const [templates, setTemplates] = useState([]);
 	const router  = useRouter();
 
 	useEffect( ()=> {
@@ -18,8 +19,20 @@ export default function Home() {
 
 		const handleHashChange = () => {
 			const hash = getHash();
-			const newArtifacts = hash !== undefined ? hash.artifacts : [];
+			if(hash === undefined) {
+				setArtifacts([]);
+				setTemplates([]);
+
+				return;
+			}
+
+			const newArtifacts = hash.artifacts !== undefined ? hash.artifacts : [];
+			const newTemplates = hash.templates !== undefined ? hash.templates : [];
+
 			setArtifacts([...newArtifacts]);
+			setTemplates([...newTemplates]);
+
+			return;
 		};
 
 		window.addEventListener('hashchange', handleHashChange);
@@ -37,21 +50,14 @@ export default function Home() {
 	}
 
 	function updateHash(newState) {
+
+		const arts = newState.artifacts !== undefined ? newState.artifacts : artifacts;
+		const cleanArtifacts = sanitizeArtifacts(arts);
+
 		let cleanState = {
-			'artifacts': newState.artifacts.map( (e) => {
-				return {
-					...e,
-					evidenceItems: e.evidenceItems.map( (evItem) => {
-						let n = {...evItem};
-						delete n.fields;
-						delete n.value;
-
-						return n;
-					} )
-				};
-			} )
+			artifacts: cleanArtifacts,
+			templates: newState.templates !== undefined ? newState.templates : templates
 		};
-
 		router.push({
 			'pathname': '/',
 			'hash': `template/${encode(cleanState)}`
@@ -86,6 +92,24 @@ export default function Home() {
 		return undefined;
 	};
 
+	function sanitizeArtifacts (arts) {
+		if(arts === undefined) {
+			return [];
+		}
+
+		return arts.map( (e) => {
+			return {
+				...e,
+				evidenceItems: e.evidenceItems.map( (evItem) => {
+					let n = {...evItem};
+					delete n.fields;
+					delete n.value;
+					return n;
+				} )
+			};
+		} )
+	};
+
 	const handleAddArtifact =  () => {
                 const val = event.target.value;
 		const id = genArtifactID();
@@ -114,6 +138,38 @@ export default function Home() {
 		
 		updateHash({
 			'artifacts': newArtifacts
+		});
+	};
+	
+	const genTemplateID = () => {
+		const IDs = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
+		const usedIDs = templates.map( (e) => e.id);
+		
+		for(var c of IDs) {
+			if(!usedIDs.includes(c)) return c;
+		}
+
+		return undefined;
+	};
+
+	const handleAddTemplate =  () => {
+                const val = event.target.value;
+		const id = genTemplateID();
+		
+		if(id === undefined) return;
+
+		const newTemplates = [...templates, {
+			'id': id,
+                        'formula': []
+                }];
+		updateHash({
+			'templates': newTemplates
+		});
+        };
+	
+	const handleClearTemplates = () => {
+		updateHash({
+			'templates': []
 		});
 	};
 
@@ -220,7 +276,11 @@ export default function Home() {
 	    handleRemoveEvidence={ handleRemoveEvidence }
 	    handleParserChange={ handleParserChange}
 	  />
-	  <ReportContainer />
+	  <ReportContainer
+	    templates={ templates }
+	    handleAddTemplate={ handleAddTemplate }
+	    handleClearTemplates={ handleClearTemplates }
+	  />
 	</>
   );
 };
