@@ -1,5 +1,7 @@
 import { useState, useCallback } from 'react';
 
+import Template from '../components/Template.jsx';
+
 import styles from '../styles/ArtifactContainer.module.css';
 
 export default function ReportContainer({ templates, ...props}) {
@@ -19,7 +21,10 @@ export default function ReportContainer({ templates, ...props}) {
 		    <ul className={ styles.elementContainer }>
 		    { templates.map( (item, index) =>
 			    <li key={ item.id }>
-			      { item.id }
+			      <Template 
+			        id={ item.id } 
+			        handleRemove={ () => props.handleRemoveTemplate(index) }
+			      />
 			    </li>
 
 		    ) }

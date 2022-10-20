@@ -172,6 +172,15 @@ export default function Home() {
 			'templates': []
 		});
 	};
+	
+	const handleRemoveTemplate = (index) => {
+		let newTemplates = templates;
+		newTemplates.splice(index, 1);
+		
+		updateHash({
+			'templates': newTemplates
+		});
+	};
 
 	const genEvidenceID = (index) => {
 		const artifact = artifacts[index];
@@ -279,6 +288,7 @@ export default function Home() {
 	    templates={ templates }
 	    handleAddTemplate={ handleAddTemplate }
 	    handleClearTemplates={ handleClearTemplates }
+	    handleRemoveTemplate={ handleRemoveTemplate }
 	  />
 	</>
   );
