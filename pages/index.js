@@ -125,10 +125,22 @@ export default function Home() {
 			'artifacts': newArtifacts
 		});
         };
+	const handleClearAction = () => {
+		let nArtifacts = artifacts;
+		let nTemplates = templates;
 
-	const handleClearArtifacts = () => {
+		switch(event.target.value) {
+			case 'clearArtifacts':
+				nArtifacts = [];
+				break;
+
+			case 'clearTemplates':
+				nTemplates = [];
+				break;
+		}
 		updateHash({
-			'artifacts': []
+			artifacts: nArtifacts,
+			templates: nTemplates
 		});
 	};
 
@@ -166,12 +178,6 @@ export default function Home() {
 			'templates': newTemplates
 		});
         };
-	
-	const handleClearTemplates = () => {
-		updateHash({
-			'templates': []
-		});
-	};
 	
 	const handleRemoveTemplate = (index) => {
 		let newTemplates = templates;
@@ -277,7 +283,7 @@ export default function Home() {
 	    artifacts={ artifacts }
 
 	    handleAddArtifact={ handleAddArtifact }
-	    handleClearArtifacts={ handleClearArtifacts }
+	    handleClearArtifacts={ handleClearAction }
 	    handleRemoveArtifact={ handleRemoveArtifact }
 	    handleAddEvidence={ handleAddEvidence }
 	    handleUpdateEvidence={ handleUpdateEvidence }
@@ -287,7 +293,7 @@ export default function Home() {
 	  <ReportContainer
 	    templates={ templates }
 	    handleAddTemplate={ handleAddTemplate }
-	    handleClearTemplates={ handleClearTemplates }
+	    handleClearTemplates={ handleClearAction }
 	    handleRemoveTemplate={ handleRemoveTemplate }
 	  />
 	</>

@@ -16,6 +16,7 @@ export default function ReportContainer({ templates, ...props}) {
 		      >Add Template</button>
 		      <button
 		        onClick={ props.handleClearTemplates }
+		        value="clearTemplates"
 		      >Clear Templates</button>
 		    </div>
 		    <ul className={ styles.elementContainer }>
