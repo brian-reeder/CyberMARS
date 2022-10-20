@@ -181,7 +181,6 @@ export default function Home() {
 		const IDs = artifact.evidenceItems.map( e => parseInt(e.id) );
 		let sortableArry = new Int8Array(IDs);
 		sortableArry.sort();
-		console.log(sortableArry)
 		let count = 1;
 		for(var ID of sortableArry) {
 			if(count !== ID) {

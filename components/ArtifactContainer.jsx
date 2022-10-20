@@ -18,7 +18,7 @@ export default function ArtifactContainer({ artifacts, ...props }) {
 	                value="clearArtifacts"
 	              >Clear Artifacts</button>
 		    </div>
-		    <ul className={ styles.artifactContainer }>
+		    <ul className={ styles.elementContainer }>
 		      { artifacts.map( (item,index) =>
 		        <li key={ item.id }>
 			    <Artifact 

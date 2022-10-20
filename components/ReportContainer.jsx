@@ -16,7 +16,7 @@ export default function ReportContainer({ templates, ...props}) {
 		        onClick={ props.handleClearTemplates }
 		      >Clear Templates</button>
 		    </div>
-		    <ul>
+		    <ul className={ styles.elementContainer }>
 		    { templates.map( (item, index) =>
 			    <li key={ item.id }>
 			      { item.id }
