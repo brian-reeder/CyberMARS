@@ -7,7 +7,7 @@ export default function ArtifactContainer({ artifacts, ...props }) {
 		<>
 		  <section className={ styles.artifactModule }>
 		    <div className={ styles.controls }>
-		      <h4>Controls</h4>
+		      <h3>Controls</h3>
 		      <button
 		        onClick={ props.handleAddArtifact }
 		        value="addArtifact"

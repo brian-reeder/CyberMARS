@@ -7,7 +7,7 @@ import { encode, decode } from '../lib/b64url.js';
 import parseEventLog from '../lib/parsers.js';
 
 import ArtifactContainer from '../components/ArtifactContainer';
-import Placeholder from '../components/Placeholder';
+import ReportContainer from '../components/ReportContainer';
 
 export default function Home() {
 	const [artifacts, setArtifacts] = useState([]);
@@ -220,7 +220,7 @@ export default function Home() {
 	    handleRemoveEvidence={ handleRemoveEvidence }
 	    handleParserChange={ handleParserChange}
 	  />
-	  <Placeholder />
+	  <ReportContainer />
 	</>
   );
 };

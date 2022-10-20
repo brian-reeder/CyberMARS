@@ -17,6 +17,11 @@
   gap: 10px;
 }
 
+.containerHeader {
+  padding: 10px;
+  text-align: center;
+}
+
 ul.artifactContainer {
   padding: 20px;
 
