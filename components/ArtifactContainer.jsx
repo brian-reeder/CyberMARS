@@ -6,18 +6,20 @@ export default function ArtifactContainer({ artifacts, ...props }) {
 	return (
 		<>
 		  <section className={ styles.artifactModule }>
-		    <h2 className={ styles.containerHeader }>Artifacts</h2>
-		    <div className={ styles.controls }>
-		      <h3>Controls</h3>
-		      <button
-		        onClick={ props.handleAddArtifact }
-		        value="addArtifact"
-		      >Add Artifact</button>
-		      <button
-		        onClick={ props.handleClearArtifacts }
-	                value="clearArtifacts"
-	              >Clear Artifacts</button>
-		    </div>
+		    <header className={ styles.header }>
+		      <h2 className={ styles.title }>Artifacts</h2>
+		      <div className={ styles.controls }>
+		        <h3>Controls</h3>
+		        <button
+		          onClick={ props.handleAddArtifact }
+		          value="addArtifact"
+		        >Add Artifact</button>
+		        <button
+		          onClick={ props.handleClearArtifacts }
+	                  value="clearArtifacts"
+	                >Clear Artifacts</button>
+		      </div>
+		    </header>
 		    <ul className={ styles.elementContainer }>
 		      { artifacts.map( (item,index) =>
 		        <li key={ item.id }>
