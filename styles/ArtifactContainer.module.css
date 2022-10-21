@@ -17,7 +17,12 @@
   gap: 10px;
 }
 
-ul.artifactContainer {
+.containerHeader {
+  padding: 10px;
+  text-align: center;
+}
+
+ul.elementContainer {
   padding: 20px;
 
   list-style: none;

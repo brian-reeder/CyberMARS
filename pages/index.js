@@ -7,10 +7,11 @@ import { encode, decode } from '../lib/b64url.js';
 import parseEventLog from '../lib/parsers.js';
 
 import ArtifactContainer from '../components/ArtifactContainer';
-import Placeholder from '../components/Placeholder';
+import ReportContainer from '../components/ReportContainer';
 
 export default function Home() {
 	const [artifacts, setArtifacts] = useState([]);
+	const [templates, setTemplates] = useState([]);
 	const router  = useRouter();
 
 	useEffect( ()=> {
@@ -18,8 +19,20 @@ export default function Home() {
 
 		const handleHashChange = () => {
 			const hash = getHash();
-			const newArtifacts = hash !== undefined ? hash.artifacts : [];
+			if(hash === undefined) {
+				setArtifacts([]);
+				setTemplates([]);
+
+				return;
+			}
+
+			const newArtifacts = hash.artifacts !== undefined ? hash.artifacts : [];
+			const newTemplates = hash.templates !== undefined ? hash.templates : [];
+
 			setArtifacts([...newArtifacts]);
+			setTemplates([...newTemplates]);
+
+			return;
 		};
 
 		window.addEventListener('hashchange', handleHashChange);
@@ -37,21 +50,14 @@ export default function Home() {
 	}
 
 	function updateHash(newState) {
+
+		const arts = newState.artifacts !== undefined ? newState.artifacts : artifacts;
+		const cleanArtifacts = sanitizeArtifacts(arts);
+
 		let cleanState = {
-			'artifacts': newState.artifacts.map( (e) => {
-				return {
-					...e,
-					evidenceItems: e.evidenceItems.map( (evItem) => {
-						let n = {...evItem};
-						delete n.fields;
-						delete n.value;
-
-						return n;
-					} )
-				};
-			} )
+			artifacts: cleanArtifacts,
+			templates: newState.templates !== undefined ? newState.templates : templates
 		};
-
 		router.push({
 			'pathname': '/',
 			'hash': `template/${encode(cleanState)}`
@@ -86,6 +92,24 @@ export default function Home() {
 		return undefined;
 	};
 
+	function sanitizeArtifacts (arts) {
+		if(arts === undefined) {
+			return [];
+		}
+
+		return arts.map( (e) => {
+			return {
+				...e,
+				evidenceItems: e.evidenceItems.map( (evItem) => {
+					let n = {...evItem};
+					delete n.fields;
+					delete n.value;
+					return n;
+				} )
+			};
+		} )
+	};
+
 	const handleAddArtifact =  () => {
                 const val = event.target.value;
 		const id = genArtifactID();
@@ -101,10 +125,22 @@ export default function Home() {
 			'artifacts': newArtifacts
 		});
         };
+	const handleClearAction = () => {
+		let nArtifacts = artifacts;
+		let nTemplates = templates;
 
-	const handleClearArtifacts = () => {
+		switch(event.target.value) {
+			case 'clearArtifacts':
+				nArtifacts = [];
+				break;
+
+			case 'clearTemplates':
+				nTemplates = [];
+				break;
+		}
 		updateHash({
-			'artifacts': []
+			artifacts: nArtifacts,
+			templates: nTemplates
 		});
 	};
 
@@ -116,6 +152,41 @@ export default function Home() {
 			'artifacts': newArtifacts
 		});
 	};
+	
+	const genTemplateID = () => {
+		const IDs = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
+		const usedIDs = templates.map( (e) => e.id);
+		
+		for(var c of IDs) {
+			if(!usedIDs.includes(c)) return c;
+		}
+
+		return undefined;
+	};
+
+	const handleAddTemplate =  () => {
+                const val = event.target.value;
+		const id = genTemplateID();
+		
+		if(id === undefined) return;
+
+		const newTemplates = [...templates, {
+			'id': id,
+                        'formula': []
+                }];
+		updateHash({
+			'templates': newTemplates
+		});
+        };
+	
+	const handleRemoveTemplate = (index) => {
+		let newTemplates = templates;
+		newTemplates.splice(index, 1);
+		
+		updateHash({
+			'templates': newTemplates
+		});
+	};
 
 	const genEvidenceID = (index) => {
 		const artifact = artifacts[index];
@@ -125,7 +196,6 @@ export default function Home() {
 		const IDs = artifact.evidenceItems.map( e => parseInt(e.id) );
 		let sortableArry = new Int8Array(IDs);
 		sortableArry.sort();
-		console.log(sortableArry)
 		let count = 1;
 		for(var ID of sortableArry) {
 			if(count !== ID) {
@@ -213,14 +283,19 @@ export default function Home() {
 	    artifacts={ artifacts }
 
 	    handleAddArtifact={ handleAddArtifact }
-	    handleClearArtifacts={ handleClearArtifacts }
+	    handleClearArtifacts={ handleClearAction }
 	    handleRemoveArtifact={ handleRemoveArtifact }
 	    handleAddEvidence={ handleAddEvidence }
 	    handleUpdateEvidence={ handleUpdateEvidence }
 	    handleRemoveEvidence={ handleRemoveEvidence }
 	    handleParserChange={ handleParserChange}
 	  />
-	  <Placeholder />
+	  <ReportContainer
+	    templates={ templates }
+	    handleAddTemplate={ handleAddTemplate }
+	    handleClearTemplates={ handleClearAction }
+	    handleRemoveTemplate={ handleRemoveTemplate }
+	  />
 	</>
   );
 };

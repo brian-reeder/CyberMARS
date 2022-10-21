@@ -4,7 +4,7 @@ export default function Navbar() {
 	return (
 		<>
 		  <nav className={ styles.navbar }>
-		    <h3 className={ styles.projectTitle }>CyberMARS</h3>
+		    <h1 className={ styles.projectTitle }>CyberMARS</h1>
 		    <div className={ styles.spacer }></div>
 		  </nav>
 		</>
