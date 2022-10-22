@@ -29,5 +29,5 @@ section.report {
 }
 
 hr.card {
-  color: var(--bg-primary);
+  border-color: var(--bg-primary);
 }
