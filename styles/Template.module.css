@@ -1,0 +1,33 @@
+.controls {
+  background-color: var(--bg-bot);
+  border-radius: 4px 20px 0 0; 
+  padding: 8px;
+
+  display: flex; 
+  flex-direction: row;
+  gap: 10px;
+}
+
+section.formula,
+section.report {
+  padding: 10px;
+  background-color:#282a36;
+  color: var(--txt-secondary);
+
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+section.report {
+  border-radius: 0 0 4px 20px;
+}
+
+.artifact {
+  border-radius: 4px 20px;
+  box-shadow: 1px 1px 10px 1px black;
+}
+
+hr.card {
+  color: var(--bg-primary);
+}

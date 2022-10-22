@@ -16,15 +16,7 @@
 
 .log,
 .json {
-  overflow-y: scroll;
-  min-height: 75px;
-  resize: none;
-
   height: 250px;
-}
-
-textarea.json {
-	color: var(--dracula-purple);
 }
 
 .hidden {
