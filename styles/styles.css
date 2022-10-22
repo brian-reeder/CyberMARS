@@ -105,11 +105,21 @@ footer > a:hover {
 }
 
 textarea {
+  padding: 5px;
+  
   border-color: var(--bg-primary);
   border-radius: 4px;
-  padding: 5px;
+  
   background-color: var(--bg-secondary);
   color: var(--text-secondary);
+  
+  overflow-y: scroll;
+  min-height: 185px;
+  resize: none;
+}
+
+textarea:read-only {
+  color: var(--dracula-purple);
 }
 
 textarea:focus-visible {
@@ -124,3 +134,4 @@ select {
 
   color: var(--dracula-purple);
 }
+
