@@ -9,7 +9,7 @@
 }
 
 .controls {
-  border-bottom: 4px solid var(--bg-primary);
+  border-bottom: 3px solid var(--bg-primary);
 }
 
 input.label {
