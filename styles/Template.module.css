@@ -1,5 +1,6 @@
 .controls {
   background-color: var(--bg-bot);
+  border-bottom: 3px solid var(--bg-primary);
   border-radius: 4px 20px 0 0; 
   padding: 8px;
 
@@ -11,9 +12,8 @@
 section.formula,
 section.report {
   padding: 10px;
-  background-color:#282a36;
-  color: var(--txt-secondary);
-
+  background-color: #282a36;
+  
   display: flex;
   flex-direction: column;
   gap: 5px;

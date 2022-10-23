@@ -9,7 +9,7 @@ export default function Artifact( { evidenceItems, ...props } ) {
 	return (
 		<article className={ styles.artifact }>
 		  <header className={ `flex row ${styles.header}` }> 
-		    <h4>({ props.id })</h4>
+		    <h4>[{ props.id }]</h4>
 		    <input
 		      className={ styles.label }
 		      onChange={ props.handleChangeLabel }

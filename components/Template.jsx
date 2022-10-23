@@ -41,11 +41,9 @@ export default function Template( { formula, artifacts, ...props } ) {
 		      <h5>Formula</h5>
 		    </header>
 		    <textarea
-		      className={ styles.structure }
 		      onChange={ props.handleChange }
-		      
 		      value={ formula }
-		      readOnly={false}
+		      readOnly={ false }
 		    ></textarea>
 		  </section>
 		  <hr className={ styles.card } />
@@ -55,9 +53,8 @@ export default function Template( { formula, artifacts, ...props } ) {
 		      <h5>Report</h5>
 		    </header>
 		    <textarea 
-		      className={ styles.reportText}
-		      readOnly={true}
 		      value={ output }
+		      readOnly={ true }
 		    ></textarea>
 		  </section>
 		</article>
