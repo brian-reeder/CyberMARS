@@ -2,7 +2,6 @@ import { useState, useCallback } from 'react';
 
 import styles from '../styles/Template.module.css';
 
-// TODO: Prepopulate Formula on reload.
 export default function Template( { formula, artifacts, ...props } ) {
 	const rx = /\$\{(([A-Z])\.([0-9][0-9])\.([^\}]*))\}/g;
 	
@@ -44,6 +43,9 @@ export default function Template( { formula, artifacts, ...props } ) {
 		    <textarea
 		      className={ styles.structure }
 		      onChange={ props.handleChange }
+		      
+		      value={ formula }
+		      readOnly={false}
 		    ></textarea>
 		  </section>
 		  <hr className={ styles.card } />
