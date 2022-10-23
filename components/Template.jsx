@@ -31,7 +31,7 @@ export default function Template( { formula, artifacts, ...props } ) {
 	return (
 		<article className={ styles.artifact }>
 		  <div className={ styles.controls }>
-		    <h4>Template ({ props.id })</h4>
+		    <h4>Template</h4>
 		    <button
 		      onClick={ props.handleRemove }
 		    >Remove</button>
