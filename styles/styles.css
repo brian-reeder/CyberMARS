@@ -162,7 +162,3 @@ select {
 .flex.col {
   flex-direction: column;
 }
-
-.flex > * {
-  flex: 1;
-}
