@@ -104,6 +104,7 @@ footer > a:hover {
   color: #ff5555;
 }
 
+input,
 textarea {
   padding: 5px;
   
@@ -113,6 +114,9 @@ textarea {
   background-color: var(--bg-secondary);
   color: var(--text-secondary);
   
+}
+
+textarea {
   overflow-y: scroll;
   min-height: 185px;
   resize: none;
@@ -122,6 +126,7 @@ textarea:read-only {
   color: var(--dracula-purple);
 }
 
+input:focus-visible,
 textarea:focus-visible {
   border-color: var(--dracula-red);
   outline: var(--dracula-red);

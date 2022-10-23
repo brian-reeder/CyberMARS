@@ -1,11 +1,21 @@
+.header, 
 .controls {
   background-color: var(--bg-bot);
-  border-radius: 4px 20px 0 0; 
   padding: 8px;
-
+  
   display: flex; 
   flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
   gap: 10px;
+}
+
+.header {
+  border-radius: 4px 20px 0 0; 
+}
+
+input.label {
+	flex: 1;
 }
 
 ul.evidenceContainer {

@@ -8,8 +8,16 @@ import styles from '../styles/Artifact.module.css';
 export default function Artifact( { evidenceItems, ...props } ) {
 	return (
 		<article className={ styles.artifact }>
+		  <header className={ styles.header }>
+		    <h4>({ props.id })</h4>
+		    <input
+		      className={ styles.label } 
+		      onChange={ props.handleChangeLabel }
+		      type="text"
+		      value={ props.label }
+		    ></input>
+		  </header>
 		  <div className={ styles.controls }>
-		    <h4>Artifact ({ props.id })</h4>
 		    <button
 		      onClick={ props.handleAddEvidence }
 		      value="eventlog"

@@ -123,6 +123,7 @@ export default function Home() {
 
 		const newArtifacts = [...artifacts, {
 			'id': id,
+			label: 'Artifact',
                         'evidenceItems': []
                 }];
 		
@@ -130,6 +131,18 @@ export default function Home() {
 			'artifacts': newArtifacts
 		});
         };
+
+	const handleChangeArtifactLabel = (index) => {
+		let artifact = artifacts[index];
+		artifact.label = event.target.value;
+
+		const newArtifacts = artifacts.splice(index, 1);
+
+		updateHash({
+			artifacts: newArtifacts
+		});
+	};
+
 	const handleClearAction = () => {
 		let nArtifacts = artifacts;
 		let nTemplates = templates;
@@ -297,6 +310,7 @@ export default function Home() {
 	    artifacts={ artifacts }
 
 	    handleAddArtifact={ handleAddArtifact }
+	    handleChangeArtifactLabel={ handleChangeArtifactLabel }
 	    handleClearArtifacts={ handleClearAction }
 	    handleRemoveArtifact={ handleRemoveArtifact }
 	    handleAddEvidence={ handleAddEvidence }
