@@ -9,11 +9,11 @@ function FormatSelector( props ) {
 		},
 		{
 			id: 1,
-			label: 'JavaScript Object Notation(JSON)',
+			label: 'JavaScript Object Notation (JSON)',
 		},
 		{
 			id: 2,
-			label: 'Common Event Format(CEF)',
+			label: 'Common Event Format (CEF)',
 		},
 		
 		// Vendor Specific Formats
