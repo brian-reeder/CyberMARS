@@ -2,12 +2,6 @@
 .controls {
   background-color: var(--bg-bot);
   padding: 8px;
-  
-  display: flex; 
-  flex-direction: row;
-  align-items: center;
-  justify-content: flex-start;
-  gap: 10px;
 }
 
 .header {
@@ -27,7 +21,6 @@ ul.evidenceContainer {
   list-style: none;
   border-radius: 0 0 4px 20px;
   background-color:#282a36;
-  color: var(--txt-secondary);
 
   display: flex;
   flex-direction: column;
