@@ -21,6 +21,7 @@ html {
 
   background-color: var(--bg-primary);
   color: var(--txt-primary);
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 footer {
@@ -104,15 +105,26 @@ footer > a:hover {
   color: #ff5555;
 }
 
+input,
+textarea,
+select {
+  font-size: 15px;  
+}
+
+input,
 textarea {
-  padding: 5px;
+  padding: 8px;
   
   border-color: var(--bg-primary);
   border-radius: 4px;
   
   background-color: var(--bg-secondary);
   color: var(--text-secondary);
-  
+
+  font-family: 'Courier New', Courier, monospace;
+}
+
+textarea {
   overflow-y: scroll;
   min-height: 185px;
   resize: none;
@@ -122,6 +134,7 @@ textarea:read-only {
   color: var(--dracula-purple);
 }
 
+input:focus-visible,
 textarea:focus-visible {
   border-color: var(--dracula-red);
   outline: var(--dracula-red);
@@ -135,3 +148,21 @@ select {
   color: var(--dracula-purple);
 }
 
+.flex {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.flex.row {
+  flex-direction: row;
+}
+
+.flex.col {
+  flex-direction: column;
+}
+
+.flex > * {
+  flex: 1;
+}

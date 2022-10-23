@@ -37,7 +37,7 @@ export default function Home() {
 
 		window.addEventListener('hashchange', handleHashChange);
 		window.addEventListener('load', handleHashChange);
-		router.events.on('hashChangeComplete', handleHashChange);
+		//router.events.on('hashChangeComplete', handleHashChange);
 		handleHashChange();
 	}, [router.isReady]);
 
@@ -54,14 +54,19 @@ export default function Home() {
 		const arts = newState.artifacts !== undefined ? newState.artifacts : artifacts;
 		const cleanArtifacts = sanitizeArtifacts(arts);
 
+		const newTemplates = newState.templates !== undefined ? newState.templates : templates
+
 		let cleanState = {
 			artifacts: cleanArtifacts,
-			templates: newState.templates !== undefined ? newState.templates : templates
+			templates: newTemplates
 		};
 		router.push({
 			'pathname': '/',
 			'hash': `template/${encode(cleanState)}`
 		});
+
+		setArtifacts(arts);
+		setTemplates(newTemplates);
 	};
 
 	function updateFields(index, evIndex) {
@@ -118,6 +123,7 @@ export default function Home() {
 
 		const newArtifacts = [...artifacts, {
 			'id': id,
+			label: 'Artifact',
                         'evidenceItems': []
                 }];
 		
@@ -125,6 +131,18 @@ export default function Home() {
 			'artifacts': newArtifacts
 		});
         };
+
+	const handleChangeArtifactLabel = (index) => {
+		let artifact = artifacts[index];
+		artifact.label = event.target.value;
+
+		const newArtifacts = artifacts.splice(index, 1);
+
+		updateHash({
+			artifacts: newArtifacts
+		});
+	};
+
 	const handleClearAction = () => {
 		let nArtifacts = artifacts;
 		let nTemplates = templates;
@@ -172,7 +190,7 @@ export default function Home() {
 
 		const newTemplates = [...templates, {
 			'id': id,
-                        'formula': []
+                        'formula': ['']
                 }];
 		updateHash({
 			'templates': newTemplates
@@ -273,6 +291,15 @@ export default function Home() {
 		});
 	};
 
+	const handleChangeTemplate = (rIndex) => {
+		let newTemplates = [...templates];
+		newTemplates[rIndex].formula[0] = event.target.value;
+
+		updateHash({
+			templates: newTemplates
+		});
+	};
+
 
   return (
 	<>
@@ -283,6 +310,7 @@ export default function Home() {
 	    artifacts={ artifacts }
 
 	    handleAddArtifact={ handleAddArtifact }
+	    handleChangeArtifactLabel={ handleChangeArtifactLabel }
 	    handleClearArtifacts={ handleClearAction }
 	    handleRemoveArtifact={ handleRemoveArtifact }
 	    handleAddEvidence={ handleAddEvidence }
@@ -292,7 +320,9 @@ export default function Home() {
 	  />
 	  <ReportContainer
 	    templates={ templates }
+	    artifacts={ artifacts }
 	    handleAddTemplate={ handleAddTemplate }
+	    handleChangeTemplate={ handleChangeTemplate }
 	    handleClearTemplates={ handleClearAction }
 	    handleRemoveTemplate={ handleRemoveTemplate }
 	  />

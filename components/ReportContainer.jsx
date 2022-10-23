@@ -25,7 +25,10 @@ export default function ReportContainer({ templates, ...props}) {
 		    { templates.map( (item, index) =>
 			    <li key={ item.id }>
 			      <Template 
-			        id={ item.id } 
+			        id={ item.id }
+			        formula={ item.formula }
+			        artifacts={ props.artifacts }
+			        handleChange= { () => props.handleChangeTemplate(index)}
 			        handleRemove={ () => props.handleRemoveTemplate(index) }
 			      />
 			    </li>

@@ -9,11 +9,11 @@ function FormatSelector( props ) {
 		},
 		{
 			id: 1,
-			label: 'JavaScript Object Notation(JSON)',
+			label: 'JavaScript Object Notation (JSON)',
 		},
 		{
 			id: 2,
-			label: 'Common Event Format(CEF)',
+			label: 'Common Event Format (CEF)',
 		},
 		
 		// Vendor Specific Formats
@@ -39,8 +39,8 @@ export default function Eventlog( props ) {
 
 	return (
 		<div className={ styles.eventlog }>
-		  <div className={ styles['controls']}>
-		    <h4>Event Log ({ props.id })</h4>
+		  <div className="flex row">
+		    <h4>({ props.id })</h4>
 		    <button onClick={ toggleHide }>Show Fields</button>
 		    <button onClick={ props.handleRemove }>Remove</button>
 		  </div>

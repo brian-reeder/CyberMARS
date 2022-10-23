@@ -6,12 +6,7 @@
   gap: 10px;
 
   padding: 5px;
-}
-
-.controls {
-  display: flex; 
-  flex-direction: row;
-  gap: 10px;
+  width: 100%;
 }
 
 .log,

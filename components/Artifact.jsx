@@ -8,8 +8,16 @@ import styles from '../styles/Artifact.module.css';
 export default function Artifact( { evidenceItems, ...props } ) {
 	return (
 		<article className={ styles.artifact }>
-		  <div className={ styles.controls }>
-		    <h4>Artifact ({ props.id })</h4>
+		  <header className={ `flex-row ${styles.header}` }> 
+		    <h4>({ props.id })</h4>
+		    <input
+		      className={ styles.label }
+		      onChange={ props.handleChangeLabel }
+		      type="text"
+		      value={ props.label }
+		    ></input>
+		  </header>
+		  <div className={ `flex row ${styles.controls}` }>
 		    <button
 		      onClick={ props.handleAddEvidence }
 		      value="eventlog"
@@ -18,7 +26,7 @@ export default function Artifact( { evidenceItems, ...props } ) {
 		      onClick={ props.handleRemove }
 		    >Remove</button>
 		  </div>
-		  <ul className={ styles.evidenceContainer }>
+		  <ul className={ `${styles.evidenceContainer}` }>
 		  { evidenceItems.map((e, i) => {
 			const nProps = {
 				...e,

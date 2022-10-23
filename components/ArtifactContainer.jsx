@@ -25,8 +25,10 @@ export default function ArtifactContainer({ artifacts, ...props }) {
 		        <li key={ item.id }>
 			    <Artifact 
 			      id={ item.id }
+			      label={ item.label }
 			      evidenceItems={ item.evidenceItems }
 
+			      handleChangeLabel={ () => props.handleChangeArtifactLabel(index) }
 			      handleRemove={ () => props.handleRemoveArtifact(index) }
 			      handleAddEvidence={ () => props.handleAddEvidence(index) }
 			      handleRemoveEvidence={ (evIndex) => props.handleRemoveEvidence(index, evIndex) }
