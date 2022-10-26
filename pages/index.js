@@ -208,10 +208,8 @@ export default function Home() {
 	};
 
 	const handleChangeTemplateLabel = (index) => {
-		let template = templates[index];
-		template.label = event.target.value;
-
-		const newTemplates = templates.splice(index, 1);
+		let newTemplates = templates;
+		newTemplates[index].label = event.target.value;
 
 		updateHash({
 			templates: newTemplates
