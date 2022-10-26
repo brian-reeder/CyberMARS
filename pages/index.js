@@ -190,6 +190,7 @@ export default function Home() {
 
 		const newTemplates = [...templates, {
 			'id': id,
+			'label': 'Template',
                         'formula': ['']
                 }];
 		updateHash({
@@ -203,6 +204,17 @@ export default function Home() {
 		
 		updateHash({
 			'templates': newTemplates
+		});
+	};
+
+	const handleChangeTemplateLabel = (index) => {
+		let template = templates[index];
+		template.label = event.target.value;
+
+		const newTemplates = templates.splice(index, 1);
+
+		updateHash({
+			templates: newTemplates
 		});
 	};
 
@@ -321,6 +333,8 @@ export default function Home() {
 	  <ReportContainer
 	    templates={ templates }
 	    artifacts={ artifacts }
+	    
+	    handleChangeTemplateLabel={ handleChangeTemplateLabel }
 	    handleAddTemplate={ handleAddTemplate }
 	    handleChangeTemplate={ handleChangeTemplate }
 	    handleClearTemplates={ handleClearAction }

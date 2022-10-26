@@ -33,11 +33,13 @@ export default function Template( { formula, artifacts, ...props } ) {
 		  <header className={ `flex row ${styles.header}` }>
 		    <input
 		      className={ styles.label }
-		      type="text" 
-		    />
+		      onChange={ props.handleChangeTemplateLabel }
+		      
+		      type="text"
+		      value={ props.label }
+		    ></input>
 		  </header>
 		  <div className={ `flex row ${styles.controls}` }>
-		      <h4>Template</h4>
 		      <button
 		        onClick={ props.handleRemove }
 		      >Remove</button>
