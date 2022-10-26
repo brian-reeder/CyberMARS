@@ -133,10 +133,8 @@ export default function Home() {
         };
 
 	const handleChangeArtifactLabel = (index) => {
-		let artifact = artifacts[index];
-		artifact.label = event.target.value;
-
-		const newArtifacts = artifacts.splice(index, 1);
+		let newArtifacts = artifacts;
+		newArtifacts[index].label = event.target.value;
 
 		updateHash({
 			artifacts: newArtifacts
