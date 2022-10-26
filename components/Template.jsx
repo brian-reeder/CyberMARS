@@ -30,11 +30,17 @@ export default function Template( { formula, artifacts, ...props } ) {
 
 	return (
 		<article className={ styles.artifact }>
-		  <div className={ styles.controls }>
-		    <h4>Template</h4>
-		    <button
-		      onClick={ props.handleRemove }
-		    >Remove</button>
+		  <header className={ `flex row ${styles.header}` }>
+		    <input
+		      className={ styles.label }
+		      type="text" 
+		    />
+		  </header>
+		  <div className={ `flex row ${styles.controls}` }>
+		      <h4>Template</h4>
+		      <button
+		        onClick={ props.handleRemove }
+		      >Remove</button>
 		  </div>
 		  <section className={ styles.formula }>
 		    <header>

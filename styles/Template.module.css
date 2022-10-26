@@ -1,12 +1,19 @@
+.header,
 .controls {
   background-color: var(--bg-bot);
-  border-bottom: 3px solid var(--bg-primary);
-  border-radius: 4px 20px 0 0; 
   padding: 8px;
+}
 
-  display: flex; 
-  flex-direction: row;
-  gap: 10px;
+.header {
+  border-radius: 4px 20px 0 0;
+}
+
+.controls {
+  border-bottom: 3px solid var(--bg-primary);
+}
+
+input.label {
+        flex: 1;
 }
 
 section.formula,
