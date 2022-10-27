@@ -2,6 +2,8 @@ header.header {
   background-color: var(--bg-bot);
   border-radius: 8px 8px 0 0;
 
+  border-bottom: 3px solid var(--bg-primary);
+
   display: flex;
   flex-direction: column;
   gap: 15px;
@@ -15,17 +17,12 @@ header.header {
 	background-color: var(--bg-secondary);
 	border-radius: 8px;
 	min-width: 400px;
-	max-width: 600px;
 }
 
 .controls {
   display: flex; 
   flex-direction: row;
   gap: 10px;
-
-  border: 2px solid var(--bg-secondary);
-  padding: 8px;
-  border-radius: 8px;
 }
 
 section > header > .title {
@@ -40,4 +37,15 @@ ul.elementContainer {
   display: flex;
   flex-direction: column;
   gap: 20px;
+}
+
+input.reportLabel {
+  flex: 1;
+}
+
+.reportLabel,
+.controls {
+  border: 2px solid var(--bg-secondary);
+  padding: 8px;
+  border-radius: 8px;
 }

@@ -167,3 +167,13 @@ select {
 .flex.col {
   flex-direction: column;
 }
+
+.title {
+  padding: 8px;
+  background-color: var(--bg-bot);
+  border-radius: 8px;
+
+  width: 100%;
+
+  justify-content: center;
+}

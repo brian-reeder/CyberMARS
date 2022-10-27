@@ -10,6 +10,7 @@ import ArtifactContainer from '../components/ArtifactContainer';
 import ReportContainer from '../components/ReportContainer';
 
 export default function Home() {
+	const [title, setTitle] = useState('CyberMARS');
 	const [artifacts, setArtifacts] = useState([]);
 	const [templates, setTemplates] = useState([]);
 	const router  = useRouter();
@@ -26,6 +27,7 @@ export default function Home() {
 				return;
 			}
 
+			const newTitle = hash.title !== undefined ? hash.title : 'CyberMARS';
 			const newArtifacts = hash.artifacts !== undefined ? hash.artifacts : [];
 			const newTemplates = hash.templates !== undefined ? hash.templates : [];
 
@@ -50,6 +52,7 @@ export default function Home() {
 	}
 
 	function updateHash(newState) {
+		const newTitle = newState.title !== undefined ? newState.title : title;
 
 		const arts = newState.artifacts !== undefined ? newState.artifacts : artifacts;
 		const cleanArtifacts = sanitizeArtifacts(arts);
@@ -57,6 +60,7 @@ export default function Home() {
 		const newTemplates = newState.templates !== undefined ? newState.templates : templates
 
 		let cleanState = {
+			title: newTitle,
 			artifacts: cleanArtifacts,
 			templates: newTemplates
 		};
@@ -65,6 +69,7 @@ export default function Home() {
 			'hash': `template/${encode(cleanState)}`
 		});
 
+		setTitle(newTitle)
 		setArtifacts(arts);
 		setTemplates(newTemplates);
 	};
@@ -113,6 +118,14 @@ export default function Home() {
 				} )
 			};
 		} )
+	};
+
+	const handleChangeTitle = () => {
+		const newTitle = event.target.value;
+
+		updateHash({
+			'title': newTitle
+		});
 	};
 
 	const handleAddArtifact =  () => {
@@ -312,8 +325,9 @@ export default function Home() {
   return (
 	<>
 	  <Head>
-	    <title>Under Construction...</title>
+	    <title>{ title }</title>
 	  </Head>
+
 	  <ArtifactContainer 
 	    artifacts={ artifacts }
 
@@ -327,9 +341,12 @@ export default function Home() {
 	    handleParserChange={ handleParserChange}
 	  />
 	  <ReportContainer
+	    title={ title }
 	    templates={ templates }
 	    artifacts={ artifacts }
 	    
+	    handleChangeTitle={ handleChangeTitle }
+
 	    handleChangeTemplateLabel={ handleChangeTemplateLabel }
 	    handleAddTemplate={ handleAddTemplate }
 	    handleChangeTemplate={ handleChangeTemplate }
