@@ -21,11 +21,22 @@ export default function Template( { formula, artifacts, ...props } ) {
 			continue;
 		}
 
-		if(!evItem.fields.hasOwnProperty(match[4])) {
-			// TODO: Highlight field notation.
-			continue;
+		let fields = evItem.fields;
+		const eventObject = match[4].split('.');
+
+		for(const word of eventObject) {
+			if(!fields.hasOwnProperty(word)) {
+				// TODO: Highlight field notation.
+				fields = undefined;
+				break;
+			}
+
+			fields = fields[word];
 		}
-		output = output.replace(match[0], evItem.fields[match[4]]);
+		
+		if(fields !== undefined) {
+			output = output.replace(match[0], fields);
+		}
 	}
 
 	return (
