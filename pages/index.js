@@ -31,6 +31,7 @@ export default function Home() {
 			const newArtifacts = hash.artifacts !== undefined ? hash.artifacts : [];
 			const newTemplates = hash.templates !== undefined ? hash.templates : [];
 
+			setTitle(newTitle);
 			setArtifacts([...newArtifacts]);
 			setTemplates([...newTemplates]);
 
