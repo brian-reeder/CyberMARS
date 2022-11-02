@@ -15,6 +15,10 @@ function FormatSelector( props ) {
 			id: 2,
 			label: 'Common Event Format (CEF)',
 		},
+		{
+			id: 3,
+			label: 'Key Value Pair (K=V|X=Y|...)',
+		},
 		
 		// Vendor Specific Formats
 		{
