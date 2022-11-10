@@ -133,6 +133,7 @@ textarea {
   overflow-y: scroll;
   min-height: 185px;
   resize: none;
+  cursor: auto;
 }
 
 textarea:read-only {
@@ -177,3 +178,17 @@ select {
 
   justify-content: center;
 }
+
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+textarea:hover::-webkit-scrollbar-thumb {
+  background: #F8F8F2;
+  border-radius: 8px;
+}
+
+textarea:hover::-webkit-scrollbar-thumb:hover {
+  background: var(--dracula-red);
+}
+
