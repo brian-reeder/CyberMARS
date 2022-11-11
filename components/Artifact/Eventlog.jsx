@@ -45,7 +45,7 @@ export default function Eventlog( props ) {
 		<div className={ styles.eventlog }>
 		  <div className="flex row">
 		    <h4>[{ props.id }]</h4>
-		    <button onClick={ toggleHide }>Show Fields</button>
+		    <button onClick={ toggleHide }>{ isHidden ? "Show" : "Hide" } Fields</button>
 		    <button onClick={ props.handleRemove }>Remove</button>
 		  </div>
 
