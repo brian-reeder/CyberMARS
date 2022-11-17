@@ -4,6 +4,12 @@ import styles from '../styles/Template.module.css';
 
 export default function Template( { formula, artifacts, ...props } ) {
 	const rx = /\$\{(([A-Z])\.([0-9][0-9])\.([^\}]*))\}/g;
+	const [isHidden, setIsHidden] = useState(true);
+
+        function toggleHide() {
+                setIsHidden(!isHidden);
+        };
+
 	
 	let output = formula[0];
 	for(const match of formula[0].matchAll(rx)) {
@@ -56,13 +62,17 @@ export default function Template( { formula, artifacts, ...props } ) {
 		      >Remove</button>
 		  </div>
 		  <section className={ styles.formula }>
-		    <header>
+		    <header className={`flex row`}>
 		      <h5>Formula</h5>
+		      <button
+		        onClick={ toggleHide }
+		      >{ isHidden ? `Show` : `Hide`}</button>
 		    </header>
 		    <textarea
 		      onChange={ props.handleChange }
 		      value={ formula }
 		      readOnly={ false }
+		      hidden={ isHidden ? true : false }
 		    ></textarea>
 		  </section>
 		  <hr className={ styles.card } />
