@@ -42,7 +42,9 @@ export default function Eventlog( props ) {
 	};
 
 	function clearEvent(e) {
-		console.log(e);
+		const el = document.getElementById(`${props.artifactId}_${props.id}_textArea`);
+		el.value = '';
+		props.handleChange();
 	};
 
 	return (
@@ -60,6 +62,7 @@ export default function Eventlog( props ) {
 		  />
 
 		  <textarea
+		    id={ `${props.artifactId}_${props.id}_textArea` }
 		    className={ styles.log }
 		    onChange={ props.handleChange }
 		    readOnly={ false }

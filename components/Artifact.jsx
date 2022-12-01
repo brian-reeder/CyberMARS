@@ -40,6 +40,7 @@ export default function Artifact( { evidenceItems, ...props } ) {
 		  { evidenceItems.map((e, i) => {
 			const nProps = {
 				...e,
+				artifactId: props.id,
 				'handleChange': () => props.handleUpdateEvidence(i),
 				'handleRemove': () => props.handleRemoveEvidence(i),
 			}
