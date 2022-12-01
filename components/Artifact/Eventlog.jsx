@@ -41,11 +41,16 @@ export default function Eventlog( props ) {
 		setIsHidden(!isHidden);
 	};
 
+	function clearEvent(e) {
+		console.log(e);
+	};
+
 	return (
 		<div className={ styles.eventlog }>
 		  <div className="flex row">
 		    <h4>[{ props.id }]</h4>
 		    <button onClick={ toggleHide }>{ isHidden ? "Show" : "Hide" } Fields</button>
+		    <button onClick={ clearEvent }>Clear</button>
 		    <button onClick={ props.handleRemove }>Remove</button>
 		  </div>
 
