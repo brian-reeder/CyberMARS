@@ -17,7 +17,11 @@ export default function ArtifactContainer({ artifacts, ...props }) {
 		        <button
 		          onClick={ props.handleClearArtifacts }
 	                  value="clearArtifacts"
-	                >Clear Artifacts</button>
+	                >Remove All Artifacts</button>
+		        <button
+		          onClick={ () => {} }
+	                  value="clearArtifacts"
+	                >Clear All Artifacts</button>
 		      </div>
 		    </header>
 		    <ul className={ styles.elementContainer }>
