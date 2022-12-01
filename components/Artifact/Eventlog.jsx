@@ -41,11 +41,18 @@ export default function Eventlog( props ) {
 		setIsHidden(!isHidden);
 	};
 
+	function clearEvent(e) {
+		const el = document.getElementById(`${props.artifactId}_${props.id}_textArea`);
+		el.value = '';
+		props.handleChange();
+	};
+
 	return (
 		<div className={ styles.eventlog }>
 		  <div className="flex row">
 		    <h4>[{ props.id }]</h4>
 		    <button onClick={ toggleHide }>{ isHidden ? "Show" : "Hide" } Fields</button>
+		    <button onClick={ clearEvent }>Clear</button>
 		    <button onClick={ props.handleRemove }>Remove</button>
 		  </div>
 
@@ -55,6 +62,7 @@ export default function Eventlog( props ) {
 		  />
 
 		  <textarea
+		    id={ `${props.artifactId}_${props.id}_textArea` }
 		    className={ styles.log }
 		    onChange={ props.handleChange }
 		    readOnly={ false }
