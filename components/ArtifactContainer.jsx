@@ -1,8 +1,19 @@
+import {useRef, useEffect} from 'react';
+
 import Artifact from '../components/Artifact';
 
 import styles from '../styles/ArtifactContainer.module.css';
 
 export default function ArtifactContainer({ artifacts, ...props }) {
+	function clearAllArtifacts(e) {
+		[...document.querySelectorAll("article[class^='Artifact_artifact_'] textarea")].forEach(
+			(e) => {
+				e.value = '';
+			}
+		);
+
+	};
+
 	return (
 		<>
 		  <section className={ styles.artifactModule }>
@@ -19,7 +30,7 @@ export default function ArtifactContainer({ artifacts, ...props }) {
 	                  value="clearArtifacts"
 	                >Remove All Artifacts</button>
 		        <button
-		          onClick={ () => {} }
+		          onClick={ clearAllArtifacts }
 	                  value="clearArtifacts"
 	                >Clear All Artifacts</button>
 		      </div>
