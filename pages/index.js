@@ -27,13 +27,15 @@ export default function Home() {
 				return;
 			}
 
-			const newTitle = hash.title !== undefined ? hash.title : 'CyberMARS';
-			const newArtifacts = hash.artifacts !== undefined ? hash.artifacts : [];
-			const newTemplates = hash.templates !== undefined ? hash.templates : [];
+			if(hash.version >= 1.0) {
+				const newTitle = hash.title !== undefined ? hash.title : 'CyberMARS';
+				const newArtifacts = hash.artifacts !== undefined ? hash.artifacts : [];
+				const newTemplates = hash.templates !== undefined ? hash.templates : [];
 
-			setTitle(newTitle);
-			setArtifacts([...newArtifacts]);
-			setTemplates([...newTemplates]);
+				setTitle(newTitle);
+				setArtifacts([...newArtifacts]);
+				setTemplates([...newTemplates]);
+			}
 
 			return;
 		};
@@ -61,6 +63,7 @@ export default function Home() {
 		const newTemplates = newState.templates !== undefined ? newState.templates : templates
 
 		let cleanState = {
+			version: 1.0,
 			title: newTitle,
 			artifacts: cleanArtifacts,
 			templates: newTemplates
