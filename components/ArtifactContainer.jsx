@@ -14,6 +14,10 @@ export default function ArtifactContainer({ artifacts, ...props }) {
 
 	};
 
+	function hideAllArtifacts(e) {
+		console.log('Hide all artifacts!');
+	};
+
 	return (
 		<>
 		  <section className={ styles.artifactModule }>
@@ -33,6 +37,10 @@ export default function ArtifactContainer({ artifacts, ...props }) {
 		          onClick={ clearAllArtifacts }
 	                  value="clearArtifacts"
 	                >Clear All Artifacts</button>
+		        <button
+		          onClick={ hideAllArtifacts }
+	                  value="hideAllArtifacts"
+	                >Hide All Artifacts</button>
 		      </div>
 		    </header>
 		    <ul className={ styles.elementContainer }>
