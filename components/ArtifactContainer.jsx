@@ -16,6 +16,18 @@ export default function ArtifactContainer({ artifacts, ...props }) {
 
 	};
 
+	function removeArtifact(index) {
+		const newArtifactIsHidden = {...artifactIsHidden};
+
+		const id = artifacts[index].id;
+		if(newArtifactIsHidden[id] !== undefined) {
+			delete newArtifactIsHidden[id];
+		}
+
+		props.handleRemoveArtifact(index);
+		setArtifactIsHidden(newArtifactIsHidden);
+	};
+
 	function toggleHide(index) {
 		let newArtifactIsHidden = {...artifactIsHidden};
 		const isHidden = newArtifactIsHidden[index];
@@ -72,7 +84,7 @@ export default function ArtifactContainer({ artifacts, ...props }) {
 			      isHidden={ artifactIsHidden[item.id] }
 
 			      handleChangeLabel={ () => props.handleChangeArtifactLabel(index) }
-			      handleRemove={ () => props.handleRemoveArtifact(index) }
+			      handleRemove={ () => removeArtifact(index) }
 			      handleAddEvidence={ () => props.handleAddEvidence(index) }
 			      handleRemoveEvidence={ (evIndex) => props.handleRemoveEvidence(index, evIndex) }
 			      handleUpdateEvidence={ (evIndex) => props.handleUpdateEvidence(index, evIndex)}
