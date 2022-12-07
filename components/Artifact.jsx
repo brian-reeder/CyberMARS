@@ -8,12 +8,6 @@ import styles from '../styles/Artifact.module.css';
 export default function Artifact( { evidenceItems, ...props } ) {
 	const [isHidden, setIsHidden] = useState(false);
 
-        function toggleHide() {
-		console.log(props.isHidden);
-
-		props.handleToggleHide();
-        };
-
 	return (
 		<article className={ styles.artifact }>
 		  <header className={ `flex row ${styles.header}` }> 
@@ -34,7 +28,7 @@ export default function Artifact( { evidenceItems, ...props } ) {
 		      onClick={ props.handleRemove }
 		    >Remove</button>
 		    <button
-		      onClick={ toggleHide }
+		      onClick={ props.handleToggleHide }
 		    >{ props.isHidden ? `Show` : `Hide`}</button>
 		  </div>
 		  <div className={ props.isHidden ? styles.hidden : ``}>

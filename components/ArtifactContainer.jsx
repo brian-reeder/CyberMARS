@@ -17,7 +17,7 @@ export default function ArtifactContainer({ artifacts, ...props }) {
 	};
 
 	function toggleHide(index) {
-		let newArtifactIsHidden = artifactIsHidden;
+		let newArtifactIsHidden = {...artifactIsHidden};
 		const isHidden = newArtifactIsHidden[index];
 		if(isHidden == undefined) {
 			newArtifactIsHidden[index] = true;
@@ -27,15 +27,14 @@ export default function ArtifactContainer({ artifacts, ...props }) {
 		}
 
 		setArtifactIsHidden(newArtifactIsHidden);
-		console.log(artifactIsHidden);
 	};
 
 	function hideAllArtifacts(e) {
-		const hiddenArtifacts = artifacts.map((e) => {
-			return { [e.id]: false};
-		});
-		console.log(artifacts);
-		console.log(hiddenArtifacts);
+		let newArtifactIsHidden = {};
+		for(const elem of artifacts) {
+			newArtifactIsHidden[elem.id] = true;
+		}
+		setArtifactIsHidden(newArtifactIsHidden);
 	};
 
 	return (
