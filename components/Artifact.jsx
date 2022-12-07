@@ -9,7 +9,9 @@ export default function Artifact( { evidenceItems, ...props } ) {
 	const [isHidden, setIsHidden] = useState(false);
 
         function toggleHide() {
-                setIsHidden(!isHidden);
+		console.log(props.isHidden);
+
+		props.handleToggleHide();
         };
 
 	return (
@@ -33,9 +35,9 @@ export default function Artifact( { evidenceItems, ...props } ) {
 		    >Remove</button>
 		    <button
 		      onClick={ toggleHide }
-		    >{ isHidden ? `Show` : `Hide`}</button>
+		    >{ props.isHidden ? `Show` : `Hide`}</button>
 		  </div>
-		  <div className={ isHidden ? styles.hidden : ``}>
+		  <div className={ props.isHidden ? styles.hidden : ``}>
 		  <ul className={ styles.evidenceContainer }>
 		  { evidenceItems.map((e, i) => {
 			const nProps = {

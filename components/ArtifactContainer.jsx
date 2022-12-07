@@ -1,10 +1,12 @@
-import {useRef, useEffect} from 'react';
+import { useState, useRef, useEffect } from 'react';
 
 import Artifact from '../components/Artifact';
 
 import styles from '../styles/ArtifactContainer.module.css';
 
 export default function ArtifactContainer({ artifacts, ...props }) {
+	const [artifactIsHidden, setArtifactIsHidden] = useState({});
+
 	function clearAllArtifacts(e) {
 		[...document.querySelectorAll("article[class^='Artifact_artifact_'] textarea")].forEach(
 			(e) => {
@@ -14,8 +16,26 @@ export default function ArtifactContainer({ artifacts, ...props }) {
 
 	};
 
+	function toggleHide(index) {
+		let newArtifactIsHidden = artifactIsHidden;
+		const isHidden = newArtifactIsHidden[index];
+		if(isHidden == undefined) {
+			newArtifactIsHidden[index] = true;
+		}
+		else {
+			newArtifactIsHidden[index] = !isHidden;
+		}
+
+		setArtifactIsHidden(newArtifactIsHidden);
+		console.log(artifactIsHidden);
+	};
+
 	function hideAllArtifacts(e) {
-		console.log('Hide all artifacts!');
+		const hiddenArtifacts = artifacts.map((e) => {
+			return { [e.id]: false};
+		});
+		console.log(artifacts);
+		console.log(hiddenArtifacts);
 	};
 
 	return (
@@ -50,6 +70,7 @@ export default function ArtifactContainer({ artifacts, ...props }) {
 			      id={ item.id }
 			      label={ item.label }
 			      evidenceItems={ item.evidenceItems }
+			      isHidden={ artifactIsHidden[item.id] }
 
 			      handleChangeLabel={ () => props.handleChangeArtifactLabel(index) }
 			      handleRemove={ () => props.handleRemoveArtifact(index) }
@@ -57,6 +78,7 @@ export default function ArtifactContainer({ artifacts, ...props }) {
 			      handleRemoveEvidence={ (evIndex) => props.handleRemoveEvidence(index, evIndex) }
 			      handleUpdateEvidence={ (evIndex) => props.handleUpdateEvidence(index, evIndex)}
 			      handleParserChange = { (evIndex) => props.handleParserChange(index, evIndex)}
+			      handleToggleHide = { () => toggleHide(item.id) }
 
 			    />
 			</li>
