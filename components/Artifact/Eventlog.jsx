@@ -1,4 +1,7 @@
 import { useState } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEye, faEyeSlash, faCircleMinus, faTrashCan } from '@fortawesome/free-solid-svg-icons';
+
 import styles from '../../styles/Artifact/Eventlog.module.css';
 
 function FormatSelector( props ) {
@@ -51,9 +54,15 @@ export default function Eventlog( props ) {
 		<div className={ styles.eventlog }>
 		  <div className="flex row">
 		    <h4>[{ props.id }]</h4>
-		    <button onClick={ toggleHide }>{ isHidden ? "Show" : "Hide" } Fields</button>
-		    <button onClick={ clearEvent }>Clear</button>
-		    <button onClick={ props.handleRemove }>Remove</button>
+		    <span onClick={ toggleHide }>
+		      <FontAwesomeIcon icon={ isHidden ? faEye : faEyeSlash } />
+		    </span>
+		    <span onClick={ clearEvent }>
+		      <FontAwesomeIcon icon={ faTrashCan } />
+		    </span>
+		    <span onClick={ props.handleRemove }>
+		      <FontAwesomeIcon icon={ faCircleMinus } />
+		    </span>
 		  </div>
 
 		  <FormatSelector

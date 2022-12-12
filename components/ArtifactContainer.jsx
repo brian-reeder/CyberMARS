@@ -1,4 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faDumpster, faEyeLowVision, faSquarePlus, faSquareMinus } from '@fortawesome/free-solid-svg-icons';
 
 import Artifact from '../components/Artifact';
 
@@ -56,22 +58,30 @@ export default function ArtifactContainer({ artifacts, ...props }) {
 		      <h2 className={ styles.title }>Artifacts</h2>
 		      <div className={ styles.controls }>
 		        <h3>Controls</h3>
-		        <button
+		        <span
 		          onClick={ props.handleAddArtifact }
 		          value="addArtifact"
-		        >Add Artifact</button>
-		        <button
+		        >
+		          <FontAwesomeIcon icon={ faSquarePlus } />
+		        </span>
+		        <span
 		          onClick={ props.handleClearArtifacts }
 	                  value="clearArtifacts"
-	                >Remove All Artifacts</button>
-		        <button
+	                >
+		          <FontAwesomeIcon icon={ faSquareMinus } />
+		        </span>
+		        <span
 		          onClick={ clearAllArtifacts }
 	                  value="clearArtifacts"
-	                >Clear All Artifacts</button>
-		        <button
+		        >
+		          <FontAwesomeIcon icon={ faDumpster } />
+		        </span>
+		        <span
 		          onClick={ hideAllArtifacts }
 	                  value="hideAllArtifacts"
-	                >Hide All Artifacts</button>
+		        >
+		          <FontAwesomeIcon icon={ faEyeLowVision } />
+		        </span>
 		      </div>
 		    </header>
 		    <ul className={ styles.elementContainer }>
@@ -85,7 +95,7 @@ export default function ArtifactContainer({ artifacts, ...props }) {
 
 			      handleChangeLabel={ () => props.handleChangeArtifactLabel(index) }
 			      handleRemove={ () => removeArtifact(index) }
-			      handleAddEvidence={ () => props.handleAddEvidence(index) }
+			      handleAddEvidence={ (type) => props.handleAddEvidence(index, type) }
 			      handleRemoveEvidence={ (evIndex) => props.handleRemoveEvidence(index, evIndex) }
 			      handleUpdateEvidence={ (evIndex) => props.handleUpdateEvidence(index, evIndex)}
 			      handleParserChange = { (evIndex) => props.handleParserChange(index, evIndex)}

@@ -1,4 +1,6 @@
 import { useState, useCallback } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEye, faEyeSlash, faCirclePlus, faCircleMinus } from '@fortawesome/free-solid-svg-icons';
 
 import Eventlog from '../components/Artifact/Eventlog';
 
@@ -20,16 +22,21 @@ export default function Artifact( { evidenceItems, ...props } ) {
 		    ></input>
 		  </header>
 		  <div className={ `flex row ${styles.controls}` }>
-		    <button
-		      onClick={ props.handleAddEvidence }
-		      value="eventlog"
-		    >Add Event Log</button>
-		    <button
+		    <span
+		      onClick={ () => { props.handleAddEvidence('eventlog') } }
+		    >
+		      <FontAwesomeIcon icon={ faCirclePlus } />
+		    </span>
+		    <span
 		      onClick={ props.handleRemove }
-		    >Remove</button>
-		    <button
+		    >
+		      <FontAwesomeIcon icon={ faCircleMinus } />
+		    </span>
+		    <span
 		      onClick={ props.handleToggleHide }
-		    >{ props.isHidden ? `Show` : `Hide`}</button>
+		    >
+		      <FontAwesomeIcon icon={ props.isHidden ? faEye : faEyeSlash } />
+		    </span>
 		  </div>
 		  <div className={ props.isHidden ? styles.hidden : ``}>
 		  <ul className={ styles.evidenceContainer }>
