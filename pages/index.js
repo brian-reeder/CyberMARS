@@ -158,11 +158,11 @@ export default function Home() {
 		});
 	};
 
-	const handleClearAction = () => {
+	const handleClearAction = (action) => {
 		let nArtifacts = artifacts;
 		let nTemplates = templates;
 
-		switch(event.target.value) {
+		switch(action) {
 			case 'clearArtifacts':
 				nArtifacts = [];
 				break;
@@ -251,7 +251,7 @@ export default function Home() {
 		return `${count}`.padStart(2, '0');
 	};
 
-	const handleAddEvidence = (index) => {
+	const handleAddEvidence = (index, evidenceType) => {
                 let newArtifacts = artifacts;
                 let evItems = newArtifacts[index].evidenceItems;
 		const id = genEvidenceID(index);
@@ -261,7 +261,7 @@ export default function Home() {
                         ...evItems,
                         {
                                 'id': id, 
-                                'type': event.target.value,
+                                'type': evidenceType,
 				'parser': 0,
 				'value': '',
                                 'fields': {}
@@ -337,7 +337,7 @@ export default function Home() {
 
 	    handleAddArtifact={ handleAddArtifact }
 	    handleChangeArtifactLabel={ handleChangeArtifactLabel }
-	    handleClearArtifacts={ handleClearAction }
+	    handleClearArtifacts={ () => { handleClearAction('clearArtifacts') } }
 	    handleRemoveArtifact={ handleRemoveArtifact }
 	    handleAddEvidence={ handleAddEvidence }
 	    handleUpdateEvidence={ handleUpdateEvidence }
@@ -354,7 +354,7 @@ export default function Home() {
 	    handleChangeTemplateLabel={ handleChangeTemplateLabel }
 	    handleAddTemplate={ handleAddTemplate }
 	    handleChangeTemplate={ handleChangeTemplate }
-	    handleClearTemplates={ handleClearAction }
+	    handleClearTemplates={ () => { handleClearAction('clearTemplates') } }
 	    handleRemoveTemplate={ handleRemoveTemplate }
 	  />
 	</>
