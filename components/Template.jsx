@@ -1,4 +1,6 @@
 import { useState, useCallback } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEye, faEyeSlash, faCircleMinus } from '@fortawesome/free-solid-svg-icons';
 
 import styles from '../styles/Template.module.css';
 
@@ -57,16 +59,20 @@ export default function Template( { formula, artifacts, ...props } ) {
 		    ></input>
 		  </header>
 		  <div className={ `flex row ${styles.controls}` }>
-		      <button
+		      <span
 		        onClick={ props.handleRemove }
-		      >Remove</button>
+		      >
+		        <FontAwesomeIcon icon={ faCircleMinus } />
+		      </span>
 		  </div>
 		  <section className={ styles.formula }>
 		    <header className={`flex row`}>
 		      <h5>Formula</h5>
-		      <button
+		      <span
 		        onClick={ toggleHide }
-		      >{ isHidden ? `Show` : `Hide`}</button>
+		      >
+		        <FontAwesomeIcon icon={ isHidden ? faEye : faEyeSlash } />
+		      </span>
 		    </header>
 		    <textarea
 		      onChange={ props.handleChange }

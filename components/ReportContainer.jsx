@@ -1,4 +1,6 @@
 import { useState, useCallback } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSquarePlus, faSquareMinus } from '@fortawesome/free-solid-svg-icons';
 
 import Template from '../components/Template.jsx';
 
@@ -21,13 +23,16 @@ export default function ReportContainer({ title, templates, ...props}) {
 		      </section>
 		      <div className={ styles.controls }>
 		        <h3>Controls</h3>
-		        <button
+		        <span
 		          onClick={ props.handleAddTemplate }
-		        >Add Template</button>
-		        <button
+		        >
+		          <FontAwesomeIcon icon={ faSquarePlus } />
+		        </span>
+		        <span
 		          onClick={ props.handleClearTemplates }
-		          value="clearTemplates"
-		        >Clear Templates</button>
+		        >
+		          <FontAwesomeIcon icon={ faSquareMinus } />
+		        </span>
 		      </div>
 		    </header>
 		    <ul className={ styles.elementContainer }>
