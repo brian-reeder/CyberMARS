@@ -1,6 +1,7 @@
 import { useState, useCallback } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash, faCircleMinus } from '@fortawesome/free-solid-svg-icons';
+import { faCopy } from '@fortawesome/free-regular-svg-icons';
 
 import styles from '../styles/Template.module.css';
 
@@ -8,11 +9,24 @@ export default function Template( { formula, artifacts, ...props } ) {
 	const rx = /\$\{(([A-Z])\.([0-9][0-9])\.([^\}]*))\}/g;
 	const [isHidden, setIsHidden] = useState(true);
 
+	const reportid = `report_${props.id}`;
+
         function toggleHide() {
                 setIsHidden(!isHidden);
         };
 
-	
+	function sendToClipboard(target) {
+		const elem = document.getElementById(reportid);
+
+		var contents = "";
+		if(elem) {
+			contents = elem.value;
+		}
+
+		navigator.clipboard.writeText(contents);
+
+		return;
+	};
 	let output = formula[0];
 	for(const match of formula[0].matchAll(rx)) {
 		const tArtifact = artifacts.filter( item => item.id === match[2] );
@@ -84,12 +98,18 @@ export default function Template( { formula, artifacts, ...props } ) {
 		  <hr className={ styles.card } />
 
 		  <section className={ styles.report }>
-		    <header>
+		    <header className="flex row">
 		      <h5>Report</h5>
+		      <span
+		        onClick={ sendToClipboard }
+		      >
+		        <FontAwesomeIcon icon={ faCopy } />
+		      </span>
 		    </header>
 		    <textarea 
 		      value={ output }
 		      readOnly={ true }
+		      id={reportid}
 		    ></textarea>
 		  </section>
 		</article>
