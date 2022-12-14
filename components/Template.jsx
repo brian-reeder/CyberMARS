@@ -7,6 +7,7 @@ import styles from '../styles/Template.module.css';
 
 export default function Template( { formula, artifacts, ...props } ) {
 	const rx = /\$\{(([A-Z])\.([0-9][0-9])\.([^\}]*))\}/g;
+	const rx2 = /((\\.)|[^\.])+/g;
 	const [isHidden, setIsHidden] = useState(true);
 
 	const reportid = `report_${props.id}`;
@@ -45,8 +46,13 @@ export default function Template( { formula, artifacts, ...props } ) {
 
 		let fields = evItem.fields;
 		const eventObject = match[4].split('.');
-
-		for(const word of eventObject) {
+		for(const m of  match[4].matchAll(rx2)) {
+			var arry = m[0].split('\\\\');
+			for(const i in arry) {
+				arry[i] = arry[i].replace('\\', '');
+			}
+			const word = arry.join('\\');
+			
 			if(!fields.hasOwnProperty(word)) {
 				// TODO: Highlight field notation.
 				fields = undefined;
