@@ -62,25 +62,25 @@ export default function ArtifactContainer({ artifacts, ...props }) {
 		          onClick={ props.handleAddArtifact }
 		          value="addArtifact"
 		        >
-		          <FontAwesomeIcon icon={ faSquarePlus } />
+		          <FontAwesomeIcon icon={ faSquarePlus } className="control" />
 		        </span>
 		        <span
 		          onClick={ props.handleClearArtifacts }
 	                  value="clearArtifacts"
 	                >
-		          <FontAwesomeIcon icon={ faSquareMinus } />
+		          <FontAwesomeIcon icon={ faSquareMinus } className="control" />
 		        </span>
 		        <span
 		          onClick={ clearAllArtifacts }
 	                  value="clearArtifacts"
 		        >
-		          <FontAwesomeIcon icon={ faDumpster } />
+		          <FontAwesomeIcon icon={ faDumpster } className="control" />
 		        </span>
 		        <span
 		          onClick={ hideAllArtifacts }
 	                  value="hideAllArtifacts"
 		        >
-		          <FontAwesomeIcon icon={ faEyeLowVision } />
+		          <FontAwesomeIcon icon={ faEyeLowVision } className="control" />
 		        </span>
 		      </div>
 		    </header>
