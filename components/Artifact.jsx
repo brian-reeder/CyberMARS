@@ -25,17 +25,17 @@ export default function Artifact( { evidenceItems, ...props } ) {
 		    <span
 		      onClick={ () => { props.handleAddEvidence('eventlog') } }
 		    >
-		      <FontAwesomeIcon icon={ faCirclePlus } />
+		      <FontAwesomeIcon icon={ faCirclePlus } className="control" />
 		    </span>
 		    <span
 		      onClick={ props.handleRemove }
 		    >
-		      <FontAwesomeIcon icon={ faCircleMinus } />
+		      <FontAwesomeIcon icon={ faCircleMinus } className="control" />
 		    </span>
 		    <span
 		      onClick={ props.handleToggleHide }
 		    >
-		      <FontAwesomeIcon icon={ props.isHidden ? faEye : faEyeSlash } />
+		      <FontAwesomeIcon icon={ props.isHidden ? faEye : faEyeSlash } className="control" />
 		    </span>
 		  </div>
 		  <div className={ props.isHidden ? styles.hidden : ``}>

@@ -18,6 +18,8 @@ html {
   --dracula-purple: #BD93F9;
   --dracula-red: #FF5555;
   --dracula-green: #50fa7b;
+  --dracula-yellow: #f1fa8c;
+  --dracula-orange: #ffb86c;
 
   background-color: var(--bg-primary);
   color: var(--txt-primary);
@@ -192,3 +194,32 @@ textarea:hover::-webkit-scrollbar-thumb:hover {
   background: var(--dracula-red);
 }
 
+.control {
+  cursor: pointer;
+}
+
+.control:hover {
+  color: var(--dracula-purple);
+}
+
+.control.fa-circle-minus:hover,
+.control.fa-square-minus:hover {
+  color: var(--dracula-red);
+}
+
+.control.fa-circle-plus:hover,
+.control.fa-square-plus:hover {
+  color: var(--dracula-green);
+}
+
+.control.fa-eye:hover,
+.control.fa-eye-slash:hover,
+.control.fa-eye-low-vision:hover,
+.control.fa-copy:hover {
+  color: var(--dracula-yellow);
+}
+
+.control.fa-dumpster:hover,
+.control.fa-trash-can:hover {
+  color: var(--dracula-orange);
+}

@@ -26,12 +26,12 @@ export default function ReportContainer({ title, templates, ...props}) {
 		        <span
 		          onClick={ props.handleAddTemplate }
 		        >
-		          <FontAwesomeIcon icon={ faSquarePlus } />
+		          <FontAwesomeIcon icon={ faSquarePlus } className="control" />
 		        </span>
 		        <span
 		          onClick={ props.handleClearTemplates }
 		        >
-		          <FontAwesomeIcon icon={ faSquareMinus } />
+		          <FontAwesomeIcon icon={ faSquareMinus } className="control" />
 		        </span>
 		      </div>
 		    </header>

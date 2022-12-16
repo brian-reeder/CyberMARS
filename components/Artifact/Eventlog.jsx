@@ -55,13 +55,13 @@ export default function Eventlog( props ) {
 		  <div className="flex row">
 		    <h4>[{ props.id }]</h4>
 		    <span onClick={ toggleHide }>
-		      <FontAwesomeIcon icon={ isHidden ? faEye : faEyeSlash } />
+		      <FontAwesomeIcon icon={ isHidden ? faEye : faEyeSlash } className="control" />
 		    </span>
 		    <span onClick={ clearEvent }>
-		      <FontAwesomeIcon icon={ faTrashCan } />
+		      <FontAwesomeIcon icon={ faTrashCan } className="control" />
 		    </span>
 		    <span onClick={ props.handleRemove }>
-		      <FontAwesomeIcon icon={ faCircleMinus } />
+		      <FontAwesomeIcon icon={ faCircleMinus } className="control" />
 		    </span>
 		  </div>
 

@@ -82,7 +82,7 @@ export default function Template( { formula, artifacts, ...props } ) {
 		      <span
 		        onClick={ props.handleRemove }
 		      >
-		        <FontAwesomeIcon icon={ faCircleMinus } />
+		        <FontAwesomeIcon icon={ faCircleMinus } className="control" />
 		      </span>
 		  </div>
 		  <section className={ styles.formula }>
@@ -91,7 +91,7 @@ export default function Template( { formula, artifacts, ...props } ) {
 		      <span
 		        onClick={ toggleHide }
 		      >
-		        <FontAwesomeIcon icon={ isHidden ? faEye : faEyeSlash } />
+		        <FontAwesomeIcon icon={ isHidden ? faEye : faEyeSlash } className="control" />
 		      </span>
 		    </header>
 		    <textarea
@@ -109,7 +109,7 @@ export default function Template( { formula, artifacts, ...props } ) {
 		      <span
 		        onClick={ sendToClipboard }
 		      >
-		        <FontAwesomeIcon icon={ faCopy } />
+		        <FontAwesomeIcon icon={ faCopy } className="control" />
 		      </span>
 		    </header>
 		    <textarea 
