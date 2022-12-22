@@ -75,6 +75,14 @@ input.reportLabel {
   border-radius: 8px;
 }
 
+@media (max-width: 840px) {
+  .artifactModule {
+    overflow-y: visible;
+    height: 100%;
+    max-height: 100%;
+  }
+}
+
 @media (max-width: 420px) {
   .artifactModule {
     min-width: 100%;

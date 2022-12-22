@@ -228,6 +228,17 @@ textarea:hover::-webkit-scrollbar-thumb:hover {
   color: var(--dracula-orange);
 }
 
+@media(max-width: 840px) {
+  ::-webkit-scrollbar-thumb {
+    background: #F8F8F2;
+    border-radius: 8px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--dracula-red);
+  }
+}
+
 @media (max-width: 420px) {
   main {
     padding: 10px 0;
