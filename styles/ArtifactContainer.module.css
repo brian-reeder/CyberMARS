@@ -9,6 +9,7 @@ header.header {
   gap: 15px;
 
   padding: 10px;
+  max-width: 100%;
 }
 
 .artifactModule {
@@ -36,14 +37,25 @@ header.header {
   display: flex; 
   flex-direction: row;
   gap: 10px;
+  overflow-x: auto;
 }
+
+.controls::-webkit-scrollbar-thumb {
+  background: var(--dracula-white);
+  border-radius: 8px;
+}
+
+.controls:hover::-webkit-scrollbar-thumb:hover {
+  background: var(--dracula-red);
+}
+
 
 section > header > .title {
   text-align: center;
 }
 
 ul.elementContainer {
-  padding: 20px;
+  padding: 10px 0 10px 10px;
 
   list-style: none;
 
@@ -61,4 +73,10 @@ input.reportLabel {
   border: 2px solid var(--bg-secondary);
   padding: 8px;
   border-radius: 8px;
+}
+
+@media (max-width: 420px) {
+  .artifactModule {
+    min-width: 100%;
+  }
 }
