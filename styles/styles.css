@@ -12,7 +12,6 @@ html {
   --bg-secondary: #181818;
   --bg-top: #404040;
   --bg-bot: #282828;
-  --txt-primary: #F8F8F2;
   --txt-secondary: #B3B3B3;
 
   --dracula-purple: #BD93F9;
@@ -20,6 +19,9 @@ html {
   --dracula-green: #50fa7b;
   --dracula-yellow: #f1fa8c;
   --dracula-orange: #ffb86c;
+  --dracula-white: #f8f8f2;
+
+  --txt-primary: var(--dracula-white);
 
   background-color: var(--bg-primary);
   color: var(--txt-primary);
@@ -129,6 +131,7 @@ textarea {
 input {
   padding-top: 10px;
   height: 35px;
+  width: 100%;
 }
 
 textarea {
@@ -183,6 +186,7 @@ select {
 
 ::-webkit-scrollbar {
   width: 5px;
+  height: 5px;
 }
 
 textarea:hover::-webkit-scrollbar-thumb {
@@ -222,4 +226,10 @@ textarea:hover::-webkit-scrollbar-thumb:hover {
 .control.fa-dumpster:hover,
 .control.fa-trash-can:hover {
   color: var(--dracula-orange);
+}
+
+@media (max-width: 420px) {
+  main {
+    padding: 10px 0;
+  }
 }
