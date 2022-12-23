@@ -157,6 +157,7 @@ select {
   border-color: var(--bg-primary);
 
   color: var(--dracula-purple);
+  cursor: pointer;
 }
 
 .flex {
