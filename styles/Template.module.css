@@ -19,7 +19,7 @@ input.label {
 section.formula,
 section.report {
   padding: 10px;
-  background-color: #282a36;
+  background-color: var(--bg-content);
   
   display: flex;
   flex-direction: column;

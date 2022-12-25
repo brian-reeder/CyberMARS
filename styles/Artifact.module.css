@@ -20,7 +20,7 @@ ul.evidenceContainer {
   padding: 10px;
   list-style: none;
   border-radius: 0 0 4px 20px;
-  background-color:#282a36;
+  background-color: var(--bg-content);
 
   display: flex;
   flex-direction: column;
