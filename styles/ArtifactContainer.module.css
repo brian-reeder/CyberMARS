@@ -13,24 +13,24 @@ header.header {
 }
 
 .artifactModule {
-	flex: 1;
+  flex: 1;
 
-	background-color: var(--bg-secondary);
-	border-radius: 8px;
-	min-width: 400px;
-	
-	height: 100%;
-	max-height: 90vh;
-	overflow-y: auto;
+  background-color: var(--bg-secondary);
+  border-radius: 8px;
+  min-width: 400px;
+
+  height: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
 }
 
 .artifactModule:hover::-webkit-scrollbar-thumb {
   border-radius: 8px;
-  background: #F8F8F2;
+  background: var(--dracula-white);
 }
 
 .artifactModule:hover::-webkit-scrollbar-thumb:hover {
-  background: #BD93F9;
+  background: var(--dracula-purple);
 }
 
 .controls {
