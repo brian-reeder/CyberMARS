@@ -28,7 +28,7 @@ html {
 
   background-color: var(--bg-primary);
   color: var(--txt-primary);
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-family: var(--font-redHatText);
 }
 
 footer {
@@ -65,6 +65,10 @@ main {
   flex-wrap: wrap;
   justify-content: center;
   gap: 10px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-redHatDisplay);
 }
 
 h1 {
@@ -111,7 +115,7 @@ textarea {
   background-color: var(--bg-secondary);
   color: var(--txt-secondary);
 
-  font-family: 'Courier New', Courier, monospace;
+  font-family: var(--font-redHatMono);
 }
 
 input {

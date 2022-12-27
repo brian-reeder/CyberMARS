@@ -16,7 +16,7 @@ export default function Default({children}) {
 		  <footer>
 		    <p>CyberMARS</p>
 		    <Link href="https://github.com/brian-reeder">
-		      <a>@brian-reeder</a>
+		      @brian-reeder
 		    </Link>
 		  </footer>
 		</>
