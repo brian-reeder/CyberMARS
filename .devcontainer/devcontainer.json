@@ -1,0 +1,12 @@
+{
+    "name": "CyberMARS",
+    "build": {
+        "dockerfile": "./Dockerfile",
+    },
+    "remoteUser": "node",
+    "customizations": {
+        "vscode": {
+            "extensions": []
+        }
+    }
+}
