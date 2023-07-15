@@ -191,6 +191,8 @@ textarea:hover::-webkit-scrollbar-thumb:hover {
 
 .control {
   cursor: pointer;
+  height: 20px;
+  width: 20px;
 }
 
 .control:hover {
